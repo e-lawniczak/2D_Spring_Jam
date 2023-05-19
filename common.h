@@ -13,6 +13,7 @@
 #include<SDL_ttf.h>
 
 #include "structs.h"
+#include "defs.h"
 
 
 extern App app;
