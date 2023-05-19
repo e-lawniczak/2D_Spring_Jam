@@ -18,14 +18,14 @@
 #include "texture.h"
 #include "stage.h"
 #include "screen.h"
+#include "load_media.h"
 
 
 extern App app;
 extern LTexture gBackgroundTexture;
+extern LTexture gTextTexture;
 extern TTF_Font* gFont;
-extern Screen startScreen;
-extern Screen gameScreen;
-extern Screen endScreen;
+extern Stage mainStage;
 
 
 #endif 

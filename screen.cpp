@@ -8,21 +8,10 @@ Screen::Screen()
 Screen::Screen(Screens aType)
 {
     type = aType;
-    screenTextTexture = NULL;
+    screenTextTexture = &gTextTexture;
 }
 
-Screen::Screen(Screens aType, std::string text)
-{
-    type = aType;
-    screenText = text;
-    LTexture tex;
-    screenTextTexture = &tex;
-    SDL_Color textColor = { 0, 0, 0 };
-    if (!screenTextTexture->loadFromRenderedText(text, textColor))
-    {
-        printf("Failed to render text texture!\n");
-    }
-}
+
 void Screen::setTex(LTexture* tex) {
     screenTextTexture = tex;
 }
@@ -45,10 +34,7 @@ void Screen::setText(std::string text)
     }
 }
 
-void Screen::renderText(int x, int y) {
-    
-    screenTextTexture->render(x, y);
-}
+
 
 Screens Screen::getType()
 {

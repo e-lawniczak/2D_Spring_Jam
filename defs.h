@@ -17,4 +17,7 @@ enum MOUSE_BUTTONS {
 	LMB,
 	RMB
 };
+
+
+
 #endif 

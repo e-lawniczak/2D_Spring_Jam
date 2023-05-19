@@ -2,26 +2,25 @@
 #include "init.h"
 #include "draw.h"
 #include "input.h"
-#include "texture.h"
-#include "load_media.h"
-#include "screen.h"
-#include "stage.h"
 App app;
 
 LTexture gBackgroundTexture;
+LTexture gTextTexture;
+
 TTF_Font* gFont;
 Screen startScreen(START_SCREEN);
 Screen gameScreen(GAME_SCREEN);
 Screen endScreen(END_SCREEN);
 
-void initStage() {
-	LTexture gStartTextTexture;
-	LTexture gEndTextTexture;
-	startScreen.setTex(&gStartTextTexture);
-	startScreen.setText("Press LMB to start");
-	endScreen.setTex(&gEndTextTexture);
-	endScreen.setText("Thanks for playing");
-}
+
+//void initStage() {
+//	LTexture gStartTextTexture;
+//	LTexture gEndTextTexture;
+//	startScreen.setTex(&gStartTextTexture);
+//	startScreen.setText("Press LMB to start");
+//	endScreen.setTex(&gEndTextTexture);
+//	endScreen.setText("Thanks for playing");
+//}
 
 int main(int argc, char* argv[]) {
 
@@ -36,10 +35,7 @@ int main(int argc, char* argv[]) {
 	// why the fuick this doesn't work when put in diffrent function, bruh c++ hard
 	LTexture gStartTextTexture;
 	LTexture gEndTextTexture;
-	startScreen.setTex(&gStartTextTexture);
 	startScreen.setText("Press LMB to start");
-	endScreen.setTex(&gEndTextTexture);
-	endScreen.setText("Thanks for playing");
 	Stage mainStage(startScreen);
 
 
@@ -57,12 +53,14 @@ int main(int argc, char* argv[]) {
 
 		// go to the game screen on LMB click
 		if (app.mouse[LMB] && mainStage.getScreen().getType() == START_SCREEN) {
+			
 			mainStage.changeScreen(gameScreen);
 		}
 
 
 		// end the game temporary by clicking q
 		if (app.keyboard[SDL_SCANCODE_Q] && mainStage.getScreen().getType() == GAME_SCREEN) {
+			endScreen.setText("Thanks for playing");
 			mainStage.changeScreen(endScreen);
 		}
 
