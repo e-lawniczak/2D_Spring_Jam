@@ -6,5 +6,17 @@
 #include <ctime>
 #include <cstdio>
 
+#include<SDL.h>
+#include<SDL_image.h>
+#include <string>
+#include<SDL_mixer.h>
+#include<SDL_ttf.h>
 
-#endif // !COMMON_HEADERS
+#include "structs.h"
+
+
+extern App app;
+
+
+
+#endif 
