@@ -1,7 +1,27 @@
 #include "common.h"
+#include "init.h"
+#include "draw.h"
+#include "input.h"
 
 App app;
 int main(int argc, char* argv[]) {
-	std::cout << "Hello world;" << std::endl;
+
+	memset(&app, 0, sizeof(App));
+
+	initSDL();
+
+
+	while (1)
+	{
+		prepareScene();
+
+		handleInput();
+
+		presentScene();
+
+		SDL_Delay(16);
+	}
+
+	return 0;
 	return 0;
 }
