@@ -18,6 +18,28 @@ void handleKeyDown(SDL_KeyboardEvent* e) {
 		app.keyboard[e->keysym.scancode] = 1;
 	}
 }
+
+void handleMouseUp(SDL_Event* e) {
+	if (e->button.button == SDL_BUTTON_LEFT)
+	{
+		app.mouse[0] = 0;
+	}
+	if (e->button.button == SDL_BUTTON_RIGHT)
+	{
+		app.mouse[1] = 0;
+	}
+}
+
+void handleMouseDown(SDL_Event* e) {
+	if (e->button.button == SDL_BUTTON_LEFT)
+	{
+		app.mouse[0] = 1;
+	}
+	if (e->button.button == SDL_BUTTON_RIGHT)
+	{
+		app.mouse[1] = 1;
+	}
+}
 void handleInput() {
 	SDL_Event e;
 
@@ -34,6 +56,12 @@ void handleInput() {
 
 		case SDL_KEYUP:
 			handleKeyUp(&e.key);
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			handleMouseDown(&e);
+			break;
+		case SDL_MOUSEBUTTONUP:
+			handleMouseUp(&e);
 			break;
 		default:
 			break;

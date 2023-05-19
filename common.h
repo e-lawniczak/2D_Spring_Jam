@@ -15,9 +15,17 @@
 
 #include "structs.h"
 #include "defs.h"
+#include "texture.h"
+#include "stage.h"
+#include "screen.h"
+
 
 extern App app;
-
+extern LTexture gBackgroundTexture;
+extern TTF_Font* gFont;
+extern Screen startScreen;
+extern Screen gameScreen;
+extern Screen endScreen;
 
 
 #endif 
