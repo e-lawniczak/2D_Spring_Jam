@@ -4,6 +4,9 @@
 #define SCREEN_WIDTH   1280
 #define SCREEN_HEIGHT  720
 
+#define PLAYER_START_H 310
+#define PLAYER_START_W 450
+
 #define MAX_KEYBOARD_KEYS	350
 #define FPS 60
 

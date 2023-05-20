@@ -97,15 +97,11 @@ void Screen::handleEndScreen()
 }
 void Screen::drawGameScreen()
 {
-	Unit player(200, SCREEN_HEIGHT / 2, "img/player.png", "Player");
-	Unit player2(200, SCREEN_HEIGHT / 2, "img/player.png", "Player", 2, 2, 2, 2, 0);
+	Unit player(PLAYER_START_W, PLAYER_START_H, "img/player.png", "Player", 2, 2, 2, 2, 0);
 	gBackgroundTexture.render(0, 0);
 	LTexture* currentTex = getTexture();
 	currentTex->render(10, 10);
-	player.getPos()->setY(SCREEN_HEIGHT/2 - player.getTexture()->getWidth() + 20);
-	player.getPos()->setX(450);
 	player.render();
-	player2.render();
 }
 
 void Screen::drawStartScreen()
