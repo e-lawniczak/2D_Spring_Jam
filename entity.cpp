@@ -18,6 +18,7 @@ Entity::Entity(int x, int y, std::string path, std::string name)
 
 Entity::~Entity()
 {
+	free();
 }
 
 void Entity::free()

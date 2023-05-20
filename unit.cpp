@@ -19,6 +19,7 @@ Unit::Unit(int x, int y, std::string path, std::string name, int hp, int atk, in
 
 Unit::~Unit()
 {
+	free();
 }
 
 void Unit::free()

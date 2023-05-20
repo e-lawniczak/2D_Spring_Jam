@@ -10,6 +10,9 @@
 #define MAX_KEYBOARD_KEYS	350
 #define FPS 60
 
+
+
+
 enum Screens {
 	START_SCREEN,
 	GAME_SCREEN,
@@ -19,6 +22,14 @@ enum Screens {
 enum MOUSE_BUTTONS {
 	LMB,
 	RMB
+};
+
+enum TileType {
+	ITEM,
+	ENCOUNTER,
+	CURIO,
+	BOSS,
+	EMPTY
 };
 
 
