@@ -3,7 +3,7 @@
 extern bool encounterGuiPtr;
 extern ImGuiIO IO;
 
-void encounterGui();
+//void encounterGui(GridTile * tile);
 void imguiFrame();
 void imguiRender();
 int imguiInit();

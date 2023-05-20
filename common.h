@@ -19,12 +19,15 @@
 #include "imgui_util.h"
 
 
+
 #include "structs.h"
 #include "defs.h"
 #include "point.h"
 #include "texture.h"
 #include "load_media.h"
 #include "item.h"
+#include "map_event.h"
+#include "grid_tile.h"
 #include "map_grid.h"
 #include "entity.h"
 #include "unit.h"

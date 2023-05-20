@@ -38,8 +38,8 @@ void GameEngine::gameLoop()
 	}
 
 	GridTile* tile = grid.getCurrentTilePtr();
-	if (tile->getType() != EMPTY && !tile->getVisited()) {
-		//tile->triggerEvent(tile->getType());
+	if (tile->getType() != EMPTY && !tile->getEvent()->getEventFired()) {
+		tile->triggerEvent(tile->getType());
 	}
 
 }

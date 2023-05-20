@@ -5,25 +5,6 @@ static const int GRID_WIDTH = 4;
 static const int GRID_HEIGHT = 1;
 static const int GRID_MOVE = 105;
 
-class GridTile {
-public:
-	GridTile();
-	~GridTile();
-	void free();
-	void setPos(Point p);
-	void setType(TileType type);
-	void triggerEvent(TileType eventType);
-	TileType getType();
-	Point getPos();
-	bool getVisited();
-	void setVisited(bool v);
-
-private:
-	Point pos;
-	TileType type;
-	bool visited;
-	// todo: add tile content and event trigger
-};
 
 class MapGrid {
 public:
