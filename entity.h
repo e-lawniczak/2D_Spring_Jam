@@ -9,6 +9,7 @@ public:
 	void free();
 	void setTexture(std::string path);
 	void render();
+	void move(Point p);
 	void setName(std::string name);
 	std::string getName();
 	Point* getPos();

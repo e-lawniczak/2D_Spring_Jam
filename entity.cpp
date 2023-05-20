@@ -35,6 +35,10 @@ void Entity::render()
 {
 	entityTex.render(pos);
 }
+void Entity::move(Point p) {
+	pos.setX(p.getX());
+	pos.setY(p.getY());
+}
 
 void Entity::setName(std::string name) {
 	this->name = name;
