@@ -16,6 +16,7 @@ Screen endScreen(END_SCREEN);
 
 
 int main(int argc, char* argv[]) {
+	srand(time(NULL));
 
 	memset(&app, 0, sizeof(App));
 

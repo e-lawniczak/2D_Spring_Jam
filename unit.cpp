@@ -35,3 +35,30 @@ int Unit::getAtk(int v) { return atk; }
 int Unit::getDef(int v) { return def; }
 int Unit::getDoge(int v) { return doge	; }
 bool Unit::getIsRanged(int v) { return isRanged; }
+
+void Unit::dealDmg(int dmg) {
+	if (hp > 0) {
+		hp -= dmg;
+	}
+	if (hp <= 0) {
+		std::cout << this->getName() << " is down" << std::endl;
+	}
+}
+
+void Unit::attackUnit(Unit* u)
+{
+	int dmgDone = std::max(atk - u->def, 0);
+	if (rand() % 101 > u->doge) {
+		u->dealDmg(dmgDone);
+	}
+
+	if (!isRanged) {
+		dmgDone = std::max(u->atk - def, 0);
+		dealDmg(dmgDone);
+	}
+
+	if (isRanged && u->isRanged) {
+		dmgDone = std::max(u->atk - def, 0);
+		dealDmg(dmgDone);
+	}
+}

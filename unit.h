@@ -19,11 +19,15 @@ public:
 	int getDoge(int v);
 	bool getIsRanged(int v);
 
+	void dealDmg(int dmg);
+
+	void attackUnit(Unit* u);
+
 private:
 	int hp;
 	int atk;
 	int def;
-	int doge;
+	int doge; //doge value is between 0 and 100
 	bool isRanged;
 };
 
