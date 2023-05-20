@@ -1,6 +1,7 @@
 #custom ignores
 *.vs
 *x64/*
+.vscode/*
 
 
 

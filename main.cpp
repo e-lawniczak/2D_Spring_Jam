@@ -1,48 +1,26 @@
 #include "common.h"
 #include "init.h"
-#include "draw.h"
-#include "input.h"
+
 App app;
 
-LTexture gBackgroundTexture;
-LTexture gTextTexture;
+SDL_Texture gBackgroundTexture;
+SDL_Texture gTextTexture;
 
 TTF_Font* gFont;
-Screen startScreen(START_SCREEN);
-Screen gameScreen(GAME_SCREEN);
-Screen endScreen(END_SCREEN);
 
 
 
 
 int main(int argc, char* argv[]) {
-
-	memset(&app, 0, sizeof(App));
-
-	initSDL();
-	loadImages();
+	initSDL(&app);
+	// loadImages();
 	loadMusic();
 	loadFont();
-	
-	Stage mainStage;
-	mainStage.initStage();
 
-
-	while (1)
-	{
-		prepareScene(mainStage);
-
-		handleInput();
-
-		mainStage.logic();
-		mainStage.draw();
-
-		
-
-		presentScene();
-
-		SDL_Delay(16);
-	}
+	while (app.running) {
+		app.logic();
+		(app.*(app.renderScreenPtr))();
+    }
 
 	close();
 	return 0;
