@@ -16,18 +16,18 @@ MapGrid::MapGrid()
 			vGrid[i][j].setPos(Point(start_w + (i * GRID_MOVE), start_h + (j * GRID_MOVE)));
 			if (i == 1) {
 				vGrid[i][j].setType(ENCOUNTER);
-				vGrid[i][j].getEvent()->addEnemy(Unit(0,0,"img/enemy1.png", "Sly fox"));
+				vGrid[i][j].getEvent()->addEnemy(Lists::enemyList[0]);
 
 			}
 			if (i == 2) {
 				vGrid[i][j].setType(ITEM);
-				vGrid[i][j].getEvent()->setItem(Item(5,0,5,20,BODY));
+				vGrid[i][j].getEvent()->setItem(Lists::itemList[0]);
 			}
 			if (i == 3) {
 				vGrid[i][j].setType(BOSS);
-				vGrid[i][j].getEvent()->addEnemy(Unit(0, 0, "img/enemy1.png", "Sly fox"));
-				vGrid[i][j].getEvent()->addEnemy(Unit(0, 0, "img/enemy1.png", "Sly fox"));
-				vGrid[i][j].getEvent()->setBoss(Unit(0, 0, "img/enemy2.png", "Blue Snowman"));
+				vGrid[i][j].getEvent()->addEnemy(Lists::enemyList[0]);
+				vGrid[i][j].getEvent()->addEnemy(Lists::enemyList[0]);
+				vGrid[i][j].getEvent()->setBoss(Lists::enemyList[1]);
 
 			}
 		}

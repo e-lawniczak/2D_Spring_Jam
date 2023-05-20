@@ -8,16 +8,16 @@ Item::Item()
 	defMod = 0;
 	dogeMod = 0;
 	type = OTHER;
-	next = NULL;
 }
-Item::Item(int hp, int atk, int def, int doge, ItemType t)
+Item::Item(std::string name, int hp, int atk, int def, int doge, ItemType t)
 {
-
+	this->name = name;
 	hpMod = hp;
 	atkMod = atk;
 	defMod = def;
 	dogeMod = doge;
 	type = t;
+
 }
 
 Item::~Item()

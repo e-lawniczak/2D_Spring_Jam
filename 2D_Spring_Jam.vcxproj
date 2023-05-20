@@ -153,6 +153,7 @@
     <ClCompile Include="point.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="stage.cpp" />
+    <ClCompile Include="static_lists.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
@@ -182,6 +183,7 @@
     <ClInclude Include="point.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="stage.h" />
+    <ClInclude Include="static_lists.h" />
     <ClInclude Include="structs.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="unit.h" />

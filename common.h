@@ -30,6 +30,7 @@
 #include "unit.h"
 #include "map_event.h"
 #include "grid_tile.h"
+#include"static_lists.h"
 #include "map_grid.h"
 #include "game_engine.h"
 

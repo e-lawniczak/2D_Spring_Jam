@@ -21,13 +21,12 @@ void GameEngine::init()
 	player.setTexture("img/player.png");
 	player.setHp(10);
 	player.setAtk(10);
-	player.move(grid.getCurrentTile().getPos());
 
 }
 
 void GameEngine::gameLoop()
 {
-	player.render();
+	player.move(grid.getCurrentTile().getPos());
 	handleOverlandMovement();
 
 
@@ -44,6 +43,8 @@ void GameEngine::gameLoop()
 	if (tile->getType() == ENCOUNTER || tile->getType() == BOSS) {
 		handleEncounter(tile);
 	}
+
+	player.render();
 
 }
 
@@ -102,6 +103,13 @@ void GameEngine::handleEncounter(GridTile* tile)
 {
 	gBackgroundTexture.loadFromFile("img/encounter_bg.png");
 	std::vector<Unit>* enemies = tile->getEvent()->getEnemy();
+	int n = enemies->size();
+	for (int i = 0; i < n; i++) {
+		Unit *u = &enemies->at(i);
+		u->move(Point(((SCREEN_WIDTH / 3) * 2), 400 + (i * 100)));
+		u->render();
+	}
+	player.move(Point((SCREEN_WIDTH / 3), SCREEN_HEIGHT / 2));
 
 	if (app.keyboard[SDL_SCANCODE_H] && !enemies->empty()) {
 		enemies->pop_back();
@@ -109,5 +117,6 @@ void GameEngine::handleEncounter(GridTile* tile)
 
 	if (tile->getEvent()->getEventFired()) {
 		gBackgroundTexture.loadFromFile("img/overland_map.png");
+		player.move(grid.getCurrentTilePtr()->getPos());
 	}
 }

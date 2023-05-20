@@ -4,7 +4,7 @@
 class Item  {
 public:
 	Item();
-	Item(int hp, int atk, int def, int doge, ItemType t);
+	Item(std::string name, int hp, int atk, int def, int doge, ItemType t);
 	~Item();
 	void free();
 	void setName(std::string v);
@@ -19,7 +19,6 @@ public:
 	int getDef();
 	int getDoge();
 	int getType();
-	Item* next;
 
 
 private:

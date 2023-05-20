@@ -7,6 +7,8 @@ Application::Application()
 	screenText = "Press LMB to start";
 	textTexture = LTexture();
 	engine = GameEngine();
+
+
 }
 
 Application::~Application()
