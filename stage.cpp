@@ -23,7 +23,7 @@ void Stage::logic()
 	currentScreen.logic();
 	// go to the game screen on LMB click
 	if (app.mouse[LMB] && getScreen().getType() == START_SCREEN) {
-
+		gameScreen.setText("Press q to end");
 		changeScreen(gameScreen);
 	}
 
@@ -38,11 +38,6 @@ void Stage::logic()
 void Stage::draw()
 {
 	currentScreen.draw();
-	// display start and end text
-	if (getScreen().getType() == START_SCREEN || getScreen().getType() == END_SCREEN) {
-		LTexture* currentTex = getScreen().getTexture();
-		currentTex->render((SCREEN_WIDTH - currentTex->getWidth()) / 2, (SCREEN_HEIGHT - currentTex->getHeight()) / 2);
-	}
 }
 
 void Stage::initStage()

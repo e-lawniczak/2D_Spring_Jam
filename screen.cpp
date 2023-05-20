@@ -86,7 +86,6 @@ void Screen::draw()
 }
 void Screen::handleGameScreen()
 {
-	gBackgroundTexture.render(0, 0);
 }
 
 void Screen::handleStartScreen()
@@ -98,12 +97,19 @@ void Screen::handleEndScreen()
 }
 void Screen::drawGameScreen()
 {
+	gBackgroundTexture.render(0, 0);
+	LTexture* currentTex = getTexture();
+	currentTex->render(10, 10);
 }
 
 void Screen::drawStartScreen()
 {
+	LTexture* currentTex = getTexture();
+	currentTex->render((SCREEN_WIDTH - currentTex->getWidth()) / 2, (SCREEN_HEIGHT - currentTex->getHeight()) / 2);
 }
 
 void Screen::drawEndScreen()
 {
+	LTexture* currentTex = getTexture();
+	currentTex->render((SCREEN_WIDTH - currentTex->getWidth()) / 2, (SCREEN_HEIGHT - currentTex->getHeight()) / 2);
 }
