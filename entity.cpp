@@ -54,7 +54,7 @@ void Entity::setMoved(bool v) {
 bool Entity::getMoved() {
 	return moved;
 }
-GridTile Entity::handleOverlandMovement(MapGrid* grid)
+void Entity::handleOverlandMovement(MapGrid* grid)
 {
 	int moveX = grid->getCurrentX();
 	int moveY = grid->getCurrentY();
@@ -67,9 +67,6 @@ GridTile Entity::handleOverlandMovement(MapGrid* grid)
 			this->moved = true;
 		
 		}
-		std::cout << grid->getCurrentX() << "\n";
-		std::cout << grid->getCurrentY() << "\n";
-
 	}
 	if (app.keyboard[SDL_SCANCODE_LEFT] && !this->moved) {
 		moveX --;
@@ -105,7 +102,6 @@ GridTile Entity::handleOverlandMovement(MapGrid* grid)
 		grid->setCurrentX(moveX);
 		grid->setCurrentY(moveY);
 	}
-	return grid->getCurrentTile();
 }
 
 std::string Entity::getName() {

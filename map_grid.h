@@ -12,8 +12,10 @@ public:
 	void free();
 	void setPos(Point p);
 	void setType(TileType type);
+	void triggerEvent(TileType eventType);
 	TileType getType();
 	Point getPos();
+	bool getVisited();
 
 private:
 	Point pos;
@@ -33,6 +35,7 @@ public:
 	int getCurrentX();
 	int getCurrentY();
 	GridTile getCurrentTile();
+	GridTile* getCurrentTilePtr();
 private:
 	std::vector<std::vector<GridTile>> grid;
 	int currentX;

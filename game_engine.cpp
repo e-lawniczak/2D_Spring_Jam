@@ -29,7 +29,7 @@ void GameEngine::init()
 void GameEngine::gameLoop()
 {
 	player.render();
-	GridTile tile = player.handleOverlandMovement(&grid);
+	(player.handleOverlandMovement(&grid));
 	timer--;
 	if (!timer) {
 		// timer is temporary solution to infinite moving
@@ -37,8 +37,9 @@ void GameEngine::gameLoop()
 		timer = MOVEMENT_DELAY;
 	}
 
-	if (tile.getType() != EMPTY) {
-		tile.triggerEvent(tile.getType());
+	GridTile* tile = grid.getCurrentTilePtr();
+	if (tile->getType() != EMPTY && !tile->getVisited()) {
+		tile->triggerEvent(tile->getType());
 	}
 
 }

@@ -26,7 +26,7 @@ MapGrid::MapGrid()
 		}
 	}
 	grid = vGrid;
-			//grid[h][w].setPos(Point(start_w + (w * 40), start_h + (h * 40)));
+	//grid[h][w].setPos(Point(start_w + (w * 40), start_h + (h * 40)));
 }
 
 MapGrid::~MapGrid()
@@ -71,6 +71,8 @@ void GridTile::setType(TileType type)
 
 void GridTile::triggerEvent(TileType eventType)
 {
+	visited = true;
+	std::cout << "Event of type:" << eventType << "\n";
 }
 
 TileType GridTile::getType()
@@ -81,6 +83,11 @@ TileType GridTile::getType()
 Point GridTile::getPos()
 {
 	return pos;
+}
+
+bool GridTile::getVisited()
+{
+	return visited;
 }
 
 void MapGrid::setCurrentX(int v)
@@ -106,4 +113,9 @@ int MapGrid::getCurrentY()
 GridTile MapGrid::getCurrentTile()
 {
 	return grid[currentX][currentY];
+}
+
+GridTile* MapGrid::getCurrentTilePtr()
+{
+	return &grid[currentX][currentY];
 }
