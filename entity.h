@@ -9,6 +9,8 @@ public:
 	void free();
 	void setTexture(std::string path);
 	void render();
+	void setName(std::string name);
+	std::string getName();
 	Point* getPos();
 	LTexture* getTexture();
 

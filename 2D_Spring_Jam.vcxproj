@@ -146,6 +146,7 @@
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="stage.h" />
     <ClInclude Include="structs.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\background.png" />

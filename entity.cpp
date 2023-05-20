@@ -35,6 +35,14 @@ void Entity::render()
 	entityTex.render(pos);
 }
 
+void Entity::setName(std::string name) {
+	this->name = name;
+}
+
+std::string Entity::getName() {
+	return name;
+}
+
 Point* Entity::getPos()
 {
 	return &pos;
@@ -44,3 +52,4 @@ LTexture* Entity::getTexture()
 {
 	return &entityTex;
 }
+

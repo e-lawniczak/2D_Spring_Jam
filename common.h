@@ -22,6 +22,7 @@
 #include "load_media.h"
 #include "map_grid.h"
 #include "entity.h"
+#include "unit.h"
 
 
 extern App app;
