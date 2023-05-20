@@ -5,8 +5,11 @@
 MapGrid::MapGrid()
 {
 	int start_w = 400, start_h = 290;
+	grid = new GridTile * [GRID_HEIGHT];
+
 	for (int i = 0; i < GRID_HEIGHT; i++)
 	{
+		grid[i] = new GridTile[GRID_WIDTH];
 		for (int j = 0; j < GRID_WIDTH; j++)
 		{
 			grid[i][j] = GridTile();
@@ -22,6 +25,11 @@ MapGrid::~MapGrid()
 
 void MapGrid::free()
 {
+}
+
+GridTile** MapGrid::getGrid()
+{
+	return grid;
 }
 
 GridTile::GridTile()

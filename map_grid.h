@@ -25,8 +25,9 @@ public:
 	MapGrid();
 	~MapGrid();
 	void free();
+	GridTile** getGrid();
 private:
-	GridTile grid[GRID_HEIGHT][GRID_WIDTH];
+	GridTile** grid;
 };
 
 

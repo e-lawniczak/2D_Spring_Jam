@@ -17,13 +17,13 @@
 #include "defs.h"
 #include "point.h"
 #include "texture.h"
-#include "stage.h"
-#include "screen.h"
 #include "load_media.h"
 #include "item.h"
 #include "entity.h"
 #include "map_grid.h"
 #include "unit.h"
+#include "stage.h"
+#include "screen.h"
 
 
 extern App app;
