@@ -3,7 +3,7 @@
 
 static const int GRID_WIDTH = 4;
 static const int GRID_HEIGHT = 1;
-static const int GRID_MOVE = 120;
+static const int GRID_MOVE = 105;
 
 class GridTile {
 public:

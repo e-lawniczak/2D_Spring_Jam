@@ -4,7 +4,7 @@
 
 MapGrid::MapGrid()
 {
-	int start_w = 400, start_h = 290;
+	int start_w = 450, start_h = 310;
 	currentX = 0;
 	currentY = 0;
 
@@ -14,6 +14,15 @@ MapGrid::MapGrid()
 		for (int j = 0; j < vGrid[i].size(); j++)
 		{
 			vGrid[i][j].setPos(Point(start_w + (i * GRID_MOVE), start_h + (j * GRID_MOVE)));
+			if (i == 1) {
+				vGrid[i][j].setType(ENCOUNTER);
+			}
+			if (i == 2) {
+				vGrid[i][j].setType(ITEM);
+			}
+			if (i == 3) {
+				vGrid[i][j].setType(BOSS);
+			}
 		}
 	}
 	grid = vGrid;
@@ -58,6 +67,10 @@ void GridTile::setPos(Point p)
 void GridTile::setType(TileType type)
 {
 	this->type = type;
+}
+
+void GridTile::triggerEvent(TileType eventType)
+{
 }
 
 TileType GridTile::getType()

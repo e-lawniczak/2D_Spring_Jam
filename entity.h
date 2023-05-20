@@ -13,7 +13,7 @@ public:
 	void setName(std::string name);
 	void setMoved(bool v);
 	bool getMoved();
-	void handleOverlandMovement(MapGrid* grid);
+	GridTile handleOverlandMovement(MapGrid* grid);
 	std::string getName();
 	Point* getPos();
 	LTexture* getTexture();

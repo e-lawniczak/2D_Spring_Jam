@@ -54,7 +54,7 @@ void Entity::setMoved(bool v) {
 bool Entity::getMoved() {
 	return moved;
 }
-void Entity::handleOverlandMovement(MapGrid* grid)
+GridTile Entity::handleOverlandMovement(MapGrid* grid)
 {
 	int moveX = grid->getCurrentX();
 	int moveY = grid->getCurrentY();
@@ -105,6 +105,7 @@ void Entity::handleOverlandMovement(MapGrid* grid)
 		grid->setCurrentX(moveX);
 		grid->setCurrentY(moveY);
 	}
+	return grid->getCurrentTile();
 }
 
 std::string Entity::getName() {
