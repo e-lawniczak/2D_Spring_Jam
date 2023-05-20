@@ -42,13 +42,13 @@ Screens Application::getScreen()
 
 void Application::init()
 {
-	setText(screenText);
+	this->setText(screenText);
 }
 void Application::handleStart()
 {
 	textTexture.render((SCREEN_WIDTH - textTexture.getWidth()) / 2, (SCREEN_HEIGHT - textTexture.getHeight()) / 2);
 	if (app.mouse[LMB] && currentScreen == START_SCREEN) {
-		setText("Press q to end");
+		this->setText("Press q to end");
 		engine.init();
 		currentScreen = GAME_SCREEN;
 	}
@@ -75,9 +75,9 @@ void Application::handleEnd()
 
 void Application::setText(std::string text)
 {
-	screenText = text;
+	this->screenText = text;
 	SDL_Color textColor = { 0, 0, 0 };
-	if (!textTexture.loadFromRenderedText(screenText, textColor))
+	if (!this->textTexture.loadFromRenderedText(screenText, textColor))
 	{
 		printf("Failed to render text texture!\n");
 	}

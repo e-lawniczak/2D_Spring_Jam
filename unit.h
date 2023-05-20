@@ -5,7 +5,7 @@ class Unit :public Entity {
 public:
 	Entity::Entity;
 	Unit();
-	explicit Unit(int x, int y, std::string path, std::string name, int hp, int atk, int def, int doge, bool isRanged) ;
+	Unit(int x, int y, std::string path, std::string name, int hp, int atk, int def, int doge, bool isRanged) ;
 	~Unit();
 	void free();
 	void setHp(int v);

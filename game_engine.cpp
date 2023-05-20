@@ -4,8 +4,8 @@ GameEngine::GameEngine()
 {
 	grid = MapGrid();
 	Point pt= grid.getCurrentTile().getPos();
-	Unit p(pt.getX(), pt.getY(), "img/player.png", "Player", 2, 2, 2, 2, 0);
-	player = p;
+	player = Unit();
+	timer = MOVEMENT_DELAY;
 }
 
 GameEngine::~GameEngine()
@@ -19,13 +19,21 @@ void GameEngine::free()
 
 void GameEngine::init()
 {
+	player.setTexture("img/player.png");
+	player.setHp(10);
+	player.setAtk(10);
+	player.move(grid.getCurrentTile().getPos());
+
 }
 
 void GameEngine::gameLoop()
 {
 	player.render();
 	player.handleOverlandMovement(&grid);
-	if (app.keyboard[SDL_SCANCODE_0]) {
+	timer--;
+	if (!timer) {
+		// timer is temporary solution to infinite moving
 		player.setMoved(false);
+		timer = MOVEMENT_DELAY;
 	}
 }

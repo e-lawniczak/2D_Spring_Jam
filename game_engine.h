@@ -2,6 +2,7 @@
 
 #ifndef ENGINE_HEADERS
 #define ENGINE_HEADERS
+static const int MOVEMENT_DELAY = 32;
 
 class GameEngine {
 public:
@@ -14,6 +15,7 @@ public:
 private:
 	MapGrid grid;
 	Unit player;
+	int timer;
 
 	
 };
