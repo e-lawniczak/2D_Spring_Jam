@@ -13,11 +13,11 @@ public:
 	void setDef(int v);
 	void setDoge(int v);
 	void setIsRanged(int v);
-	int getHp(int v);
-	int getAtk(int v);
-	int getDef(int v);
-	int getDoge(int v);
-	bool getIsRanged(int v);
+	int getHp();
+	int getAtk();
+	int getDef();
+	int getDoge();
+	bool getIsRanged();
 
 	void dealDmg(int dmg);
 

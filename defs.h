@@ -32,6 +32,15 @@ enum TileType {
 	EMPTY
 };
 
+enum ItemType {
+	HEAD,
+	BODY,
+	ARMS,
+	LEGS,
+	WEAPON,
+	OTHER
+};
+
 
 
 #endif 

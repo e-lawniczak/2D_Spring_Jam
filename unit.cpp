@@ -31,11 +31,11 @@ void Unit::setAtk(int v) { atk = v; }
 void Unit::setDef(int v) { def = v; }
 void Unit::setDoge(int v) { doge = v; }
 void Unit::setIsRanged(int v) { isRanged = v; }
-int Unit::getHp(int v) { return hp; }
-int Unit::getAtk(int v) { return atk; }
-int Unit::getDef(int v) { return def; }
-int Unit::getDoge(int v) { return doge; }
-bool Unit::getIsRanged(int v) { return isRanged; }
+int Unit::getHp() { return hp; }
+int Unit::getAtk() { return atk; }
+int Unit::getDef() { return def; }
+int Unit::getDoge() { return doge; }
+bool Unit::getIsRanged() { return isRanged; }
 
 void Unit::dealDmg(int dmg) {
 	if (hp > 0) {

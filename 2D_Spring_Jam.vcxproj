@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -139,6 +139,7 @@
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="item.cpp" />
     <ClCompile Include="load_media.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map_grid.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="imstb_truetype.h" />
     <ClInclude Include="init.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="item.h" />
     <ClInclude Include="load_media.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="map_grid.h" />

@@ -20,6 +20,7 @@
 #include "stage.h"
 #include "screen.h"
 #include "load_media.h"
+#include "item.h"
 #include "entity.h"
 #include "map_grid.h"
 #include "unit.h"
