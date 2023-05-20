@@ -74,7 +74,7 @@ void GridTile::triggerEvent(TileType eventType)
 	
 	std::cout << "Event of type:" << eventType << "\n";
 	if (eventType == ENCOUNTER) {
-		//encounterGui();
+		encounterGui();
 	}
 }
 
