@@ -64,7 +64,7 @@ void Application::handleGame()
 	}
 
 	gBackgroundTexture.render(0, 0);
-	textTexture.render(10, 10);
+	//textTexture.render(10, 10);
 	engine.gameLoop();
 }
 

@@ -2,7 +2,6 @@
 #include "init.h"
 
 bool encounterGuiPtr;
-static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 ImGuiIO IO;
 int imguiInit() {
@@ -22,7 +21,9 @@ int imguiInit() {
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	IO = io;
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	io.ConfigFlags |= ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar;
+	io.ConfigFlags |= ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove;
 
 	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();

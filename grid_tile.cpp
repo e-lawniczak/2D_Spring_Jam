@@ -30,9 +30,25 @@ void GridTile::triggerEvent(TileType eventType)
 {
 
 	std::cout << "Event of type:" << eventType << "\n";
-	if (eventType == ENCOUNTER) {
+
+	switch (eventType)
+	{
+	case ITEM:
+		mEvent.itemEvent();
+		break;
+	case ENCOUNTER:
 		mEvent.encounterEvent();
+		break;
+	case CURIO:
+		mEvent.curioEvent();
+		break;
+	case BOSS:
+		mEvent.bossEvent();
+		break;
+	default:
+		break;
 	}
+
 }
 
 TileType GridTile::getType()

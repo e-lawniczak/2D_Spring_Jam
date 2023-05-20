@@ -26,11 +26,11 @@
 #include "texture.h"
 #include "load_media.h"
 #include "item.h"
+#include "entity.h"
+#include "unit.h"
 #include "map_event.h"
 #include "grid_tile.h"
 #include "map_grid.h"
-#include "entity.h"
-#include "unit.h"
 #include "game_engine.h"
 
 extern App app;

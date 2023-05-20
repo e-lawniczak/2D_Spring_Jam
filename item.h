@@ -7,11 +7,13 @@ public:
 	Item(int hp, int atk, int def, int doge, ItemType t);
 	~Item();
 	void free();
+	void setName(std::string v);
 	void setHp(int v);
 	void setAtk(int v);
 	void setDef(int v);
 	void setDoge(int v);
 	void setType(ItemType v);
+	std::string getName();
 	int getHp();
 	int getAtk();
 	int getDef();
@@ -21,6 +23,7 @@ public:
 
 
 private:
+	std::string name;
 	int hpMod;
 	int atkMod;
 	int defMod;

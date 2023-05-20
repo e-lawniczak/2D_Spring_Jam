@@ -11,8 +11,11 @@ public:
 	void free();
 	void init();
 	void gameLoop();
+	void handleOverlandMovement();
+
 	
 private:
+	void handleEncounter(GridTile *tile);
 	MapGrid grid;
 	Unit player;
 	int timer;

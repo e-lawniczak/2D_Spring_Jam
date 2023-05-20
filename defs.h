@@ -16,6 +16,7 @@
 enum Screens {
 	START_SCREEN,
 	GAME_SCREEN,
+	ENCOUNTER_SCREEN,
 	END_SCREEN
 };
 

@@ -13,7 +13,7 @@ Item::Item()
 Item::Item(int hp, int atk, int def, int doge, ItemType t)
 {
 
-	hpMod =hp ;
+	hpMod = hp;
 	atkMod = atk;
 	defMod = def;
 	dogeMod = doge;
@@ -34,8 +34,11 @@ void Item::setAtk(int v) { atkMod = v; }
 void Item::setDef(int v) { defMod = v; }
 void Item::setDoge(int v) { dogeMod = v; }
 void Item::setType(ItemType v) { type = v; }
+void Item::setName(std::string v) { name = v; }
 int Item::getHp() { return hpMod; }
 int Item::getAtk() { return atkMod; }
 int Item::getDef() { return defMod; }
 int Item::getDoge() { return dogeMod; }
 int Item::getType() { return type; }
+std::string Item::getName() { return name; }
+
