@@ -97,9 +97,13 @@ void Screen::handleEndScreen()
 }
 void Screen::drawGameScreen()
 {
+	Entity player(200, SCREEN_HEIGHT / 2, "img/player.png", "Player");
 	gBackgroundTexture.render(0, 0);
 	LTexture* currentTex = getTexture();
 	currentTex->render(10, 10);
+	player.getPos()->setY(SCREEN_HEIGHT/2 - player.getTexture()->getWidth() + 20);
+	player.getPos()->setX(450);
+	player.render();
 }
 
 void Screen::drawStartScreen()

@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="draw.cpp" />
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_sdlrenderer.cpp" />
@@ -140,6 +141,8 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="load_media.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map_grid.cpp" />
+    <ClCompile Include="point.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -148,6 +151,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="draw.h" />
+    <ClInclude Include="entity.h" />
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imgui.h" />
     <ClInclude Include="imgui_impl_sdlrenderer.h" />
@@ -159,6 +163,8 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="load_media.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="map_grid.h" />
+    <ClInclude Include="point.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="structs.h" />

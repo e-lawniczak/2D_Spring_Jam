@@ -3,7 +3,7 @@
 
 Stage::Stage()
 {
-	currentScreen = START_SCREEN;
+	currentScreen = startScreen;
 }
 Stage::Stage(Screen initScreen)
 {

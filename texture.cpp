@@ -1,5 +1,4 @@
 #include "common.h"
-#include "texture.h"
 
 
 LTexture::LTexture()
@@ -20,6 +19,13 @@ void LTexture::render(int x, int y)
 {
     //Set rendering space and render to screen
     SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+    SDL_RenderCopy(app.renderer, mTexture, NULL, &renderQuad);
+}
+
+void LTexture::render(Point point)
+{
+    //Set rendering space and render to screen
+    SDL_Rect renderQuad = { point.getX(), point.getY(), mWidth, mHeight};
     SDL_RenderCopy(app.renderer, mTexture, NULL, &renderQuad);
 }
 

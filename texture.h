@@ -14,6 +14,7 @@ public:
     void setAlpha(Uint8 alpha);
 
     void render(int x, int y);
+    void render(Point point);
     int getWidth();
     int getHeight();
 

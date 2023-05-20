@@ -15,10 +15,13 @@
 
 #include "structs.h"
 #include "defs.h"
+#include "point.h"
 #include "texture.h"
 #include "stage.h"
 #include "screen.h"
 #include "load_media.h"
+#include "map_grid.h"
+#include "entity.h"
 
 
 extern App app;
