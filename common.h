@@ -22,17 +22,11 @@
 #include "entity.h"
 #include "map_grid.h"
 #include "unit.h"
-#include "stage.h"
-#include "screen.h"
-
 
 extern App app;
 extern LTexture gBackgroundTexture;
 extern LTexture gTextTexture;
 extern TTF_Font* gFont;
-extern Stage mainStage;
-extern Screen startScreen;
-extern Screen gameScreen;
-extern Screen endScreen;
+
 
 #endif 

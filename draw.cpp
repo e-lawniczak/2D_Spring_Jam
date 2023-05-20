@@ -1,8 +1,8 @@
 #include "common.h"
 
-void prepareScene(Stage stage)
+void prepareScene(Screens screen)
 {
-	if (stage.getScreen().getType() == GAME_SCREEN) {
+	if (screen == GAME_SCREEN) {
 		SDL_SetRenderDrawColor(app.renderer, 173, 239, 255, 255);
 	}
 	else {

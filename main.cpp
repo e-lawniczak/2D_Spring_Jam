@@ -2,17 +2,12 @@
 #include "init.h"
 #include "draw.h"
 #include "input.h"
+#include "app.h"
 App app;
 
 LTexture gBackgroundTexture;
 LTexture gTextTexture;
-
 TTF_Font* gFont;
-Screen startScreen(START_SCREEN);
-Screen gameScreen(GAME_SCREEN);
-Screen endScreen(END_SCREEN);
-
-
 
 
 int main(int argc, char* argv[]) {
@@ -25,20 +20,15 @@ int main(int argc, char* argv[]) {
 	loadMusic();
 	loadFont();
 	
-	Stage mainStage;
-	mainStage.initStage();
-
-
+	Application application;
+	application.init();
 	while (1)
 	{
-		prepareScene(mainStage);
+		prepareScene(application.getScreen());
 
 		handleInput();
 
-		mainStage.logic();
-		mainStage.draw();
-
-		
+		application.handleScreen();
 
 		presentScene();
 
