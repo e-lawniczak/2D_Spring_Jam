@@ -3,6 +3,7 @@
 
 static const int GRID_WIDTH = 4;
 static const int GRID_HEIGHT = 1;
+static const int GRID_MOVE = 120;
 
 class GridTile {
 public:
@@ -27,10 +28,11 @@ public:
 	~MapGrid();
 	void free();
 	std::vector<std::vector<GridTile>> getGrid();
-	int setCurrentX(int v);
-	int setCurrentY(int v);
+	void setCurrentX(int v);
+	void setCurrentY(int v);
 	int getCurrentX();
 	int getCurrentY();
+	GridTile getCurrentTile();
 private:
 	std::vector<std::vector<GridTile>> grid;
 	int currentX;

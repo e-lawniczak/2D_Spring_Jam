@@ -13,7 +13,7 @@ MapGrid::MapGrid()
 	{
 		for (int j = 0; j < vGrid[i].size(); j++)
 		{
-			vGrid[i][j].setPos(Point(start_w + (i * 40), start_h + (j * 40)));
+			vGrid[i][j].setPos(Point(start_w + (i * GRID_MOVE), start_h + (j * GRID_MOVE)));
 		}
 	}
 	grid = vGrid;
@@ -70,22 +70,27 @@ Point GridTile::getPos()
 	return pos;
 }
 
-int MapGrid::setCurrentX(int v)
+void MapGrid::setCurrentX(int v)
 {
-	return 0;
+	currentX = v;
 }
 
-int MapGrid::setCurrentY(int v)
+void MapGrid::setCurrentY(int v)
 {
-	return 0;
+	currentY = v;
 }
 
 int MapGrid::getCurrentX()
 {
-	return 0;
+	return currentX;
 }
 
 int MapGrid::getCurrentY()
 {
-	return 0;
+	return currentY;
+}
+
+GridTile MapGrid::getCurrentTile()
+{
+	return grid[currentX][currentY];
 }
