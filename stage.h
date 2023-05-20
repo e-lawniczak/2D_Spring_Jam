@@ -11,6 +11,8 @@ public:
 	~Stage();
 	void changeScreen(Screen screen);
 	void free();
+	void logic();
+	void draw();
 	Screen getScreen();
 
 

@@ -45,24 +45,10 @@ int main(int argc, char* argv[]) {
 
 		handleInput();
 
-		// display start and end text
-		if (mainStage.getScreen().getType() == START_SCREEN || mainStage.getScreen().getType() == END_SCREEN) {
-			LTexture* currentTex = mainStage.getScreen().getTexture();
-			currentTex->render((SCREEN_WIDTH - currentTex->getWidth()) / 2, (SCREEN_HEIGHT - currentTex->getHeight()) / 2);
-		}
+		mainStage.logic();
+		mainStage.draw();
 
-		// go to the game screen on LMB click
-		if (app.mouse[LMB] && mainStage.getScreen().getType() == START_SCREEN) {
-			
-			mainStage.changeScreen(gameScreen);
-		}
-
-
-		// end the game temporary by clicking q
-		if (app.keyboard[SDL_SCANCODE_Q] && mainStage.getScreen().getType() == GAME_SCREEN) {
-			endScreen.setText("Thanks for playing");
-			mainStage.changeScreen(endScreen);
-		}
+		
 
 		presentScene();
 

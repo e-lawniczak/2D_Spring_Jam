@@ -26,6 +26,8 @@ extern LTexture gBackgroundTexture;
 extern LTexture gTextTexture;
 extern TTF_Font* gFont;
 extern Stage mainStage;
-
+extern Screen startScreen;
+extern Screen gameScreen;
+extern Screen endScreen;
 
 #endif 
