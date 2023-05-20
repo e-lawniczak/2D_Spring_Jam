@@ -21,7 +21,8 @@ public:
 
 	void dealDmg(int dmg);
 
-	void attackUnit(Unit* u);
+	void basicAttackUnit(Unit* u);
+	void fastAttackUnit(Unit* u);
 
 private:
 	int hp;

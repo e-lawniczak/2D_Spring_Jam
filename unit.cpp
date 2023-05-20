@@ -34,7 +34,7 @@ void Unit::setIsRanged(int v) { isRanged = v; }
 int Unit::getHp(int v) { return hp; }
 int Unit::getAtk(int v) { return atk; }
 int Unit::getDef(int v) { return def; }
-int Unit::getDoge(int v) { return doge	; }
+int Unit::getDoge(int v) { return doge; }
 bool Unit::getIsRanged(int v) { return isRanged; }
 
 void Unit::dealDmg(int dmg) {
@@ -46,7 +46,7 @@ void Unit::dealDmg(int dmg) {
 	}
 }
 
-void Unit::attackUnit(Unit* u)
+void Unit::basicAttackUnit(Unit* u)
 {
 	int dmgDone = std::max(atk - u->def, 0);
 	if (rand() % 101 > u->doge) {
@@ -60,6 +60,27 @@ void Unit::attackUnit(Unit* u)
 
 	if (isRanged && u->isRanged) {
 		dmgDone = std::max(u->atk - def, 0);
+		dealDmg(dmgDone);
+	}
+}
+
+void Unit::fastAttackUnit(Unit* u)
+{
+	int mod = -5;
+	int accMod = -40;
+	int dmgDone = std::max(atk + mod - u->def, 0);
+	int dogeCheck = std::max((rand() % 101) + accMod, 0);
+	if (dogeCheck > u->doge) {
+		u->dealDmg(dmgDone);
+	}
+
+	if (!isRanged) {
+		dmgDone = std::max(u->atk / 2 - def, 0);
+		dealDmg(dmgDone);
+	}
+
+	if (isRanged && u->isRanged) {
+		dmgDone = std::max(u->atk / 2 - def, 0);
 		dealDmg(dmgDone);
 	}
 }
