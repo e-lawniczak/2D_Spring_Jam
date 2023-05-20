@@ -137,8 +137,10 @@
     <ClCompile Include="game_engine.cpp" />
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_sdl2.cpp" />
     <ClCompile Include="imgui_impl_sdlrenderer.cpp" />
     <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_util.cpp" />
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="input.cpp" />
@@ -160,8 +162,10 @@
     <ClInclude Include="game_engine.h" />
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_sdl2.h" />
     <ClInclude Include="imgui_impl_sdlrenderer.h" />
     <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imgui_util.h" />
     <ClInclude Include="imstb_rectpack.h" />
     <ClInclude Include="imstb_textedit.h" />
     <ClInclude Include="imstb_truetype.h" />

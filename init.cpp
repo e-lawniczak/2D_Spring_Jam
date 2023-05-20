@@ -1,16 +1,19 @@
 #include "common.h"
 
-void initSDL() {
-	int rendererFlags, windowFlags;
-	rendererFlags = SDL_RENDERER_ACCELERATED;
-	windowFlags = 0;
+
+
+int initSDL() {
+	int rendererFlags;
+	rendererFlags = SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED;
+	SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("Initialize error: %s", SDL_GetError());
 		exit(1);
 	}
 
-	app.window = SDL_CreateWindow("Chicken RPG", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, windowFlags);
+
+	app.window = SDL_CreateWindow("Chicken RPG", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, window_flags);
 
 	if (!app.window)
 	{
@@ -21,6 +24,9 @@ void initSDL() {
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 
 	app.renderer = SDL_CreateRenderer(app.window, -1, rendererFlags);
+
+	imguiInit();
+
 
 	if (!app.renderer)
 	{

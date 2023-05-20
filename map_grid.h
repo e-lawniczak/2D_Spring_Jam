@@ -16,6 +16,7 @@ public:
 	TileType getType();
 	Point getPos();
 	bool getVisited();
+	void setVisited(bool v);
 
 private:
 	Point pos;

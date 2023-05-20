@@ -25,13 +25,13 @@ int main(int argc, char* argv[]) {
 	while (1)
 	{
 		prepareScene(application.getScreen());
-
+		imguiFrame();
 		handleInput();
 
 		application.handleScreen();
 
 		presentScene();
-
+		imguiRender();
 		SDL_Delay(16);
 	}
 

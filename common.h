@@ -12,6 +12,12 @@
 #include<SDL_mixer.h>
 #include<SDL_ttf.h>
 
+#include "imgui.h"
+#include "imgui_impl_sdlrenderer.h"
+#include "imgui_impl_sdl2.h"
+#include "imgui_internal.h"
+#include "imgui_util.h"
+
 
 #include "structs.h"
 #include "defs.h"

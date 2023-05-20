@@ -71,8 +71,11 @@ void GridTile::setType(TileType type)
 
 void GridTile::triggerEvent(TileType eventType)
 {
-	visited = true;
+	
 	std::cout << "Event of type:" << eventType << "\n";
+	if (eventType == ENCOUNTER) {
+		//encounterGui();
+	}
 }
 
 TileType GridTile::getType()
@@ -88,6 +91,11 @@ Point GridTile::getPos()
 bool GridTile::getVisited()
 {
 	return visited;
+}
+
+void GridTile::setVisited(bool v)
+{
+	visited = v;
 }
 
 void MapGrid::setCurrentX(int v)

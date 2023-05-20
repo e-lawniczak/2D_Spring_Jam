@@ -99,6 +99,7 @@ void Entity::handleOverlandMovement(MapGrid* grid)
 		}
 	}
 	if (moved) {
+		//grid->getCurrentTilePtr()->setVisited(true);
 		grid->setCurrentX(moveX);
 		grid->setCurrentY(moveY);
 	}
