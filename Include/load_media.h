@@ -1,8 +1,4 @@
-#ifndef LOAD_MEDIA_HEADERS
-#define LOAD_MEDIA_HEADERS
-
+#pragma once
 bool loadImages(std::string path);
 bool loadMusic();
 bool loadFont();
-
-#endif

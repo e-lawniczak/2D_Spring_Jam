@@ -1,6 +1,6 @@
-#include "common.h"
+#include "HEADER.h"
 
-bool loadImages(std::string path, SDL_Texture ** texture, App * app) {
+bool loadImages(std::string path, SDL_Texture ** texture, Game * app) {
     //Loading success flag
     bool success = true;
 
@@ -23,7 +23,7 @@ bool loadMusic() {
 bool loadFont() {
     bool success = true;
 
-    gFont = TTF_OpenFont("font/arial.ttf", 28);
+    static TTF_Font * gFont = TTF_OpenFont("font/arial.ttf", 28);
     if (gFont == NULL) {
         printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
         success = false;

@@ -1,52 +1,33 @@
 CC = g++
-CFLAGS = -std=c++20 -Wall -m64 -O2 -fdiagnostics-color=always
+CFLAGS := -std=c++20 -Wall -Wformat -m64 -O2 -fdiagnostics-color=always
 
+IMGUI_DIR = C:\Users\Administrator\OneDrive\Desktop\CppLibs\ImGui-Master
+INCLUDES = -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends -IInclude -IC:\C++\Libs\SDL2-3\include/SDL2 -Dmain=SDL_main
 
+SOURCES := $(wildcard Source/*.*)
+SOURCES += $(wildcard Source/ImGui/*.*)
 
-CXXFLAGS = -std=c++11 -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends
-CXXFLAGS += -g -Wall -Wformat
-
-
+TARGET = main.cpp
 
 EXE = example_sdl2_sdlrenderer
-IMGUI_DIR = C:\Users\Administrator\OneDrive\Desktop\CppLibs\ImGui-Master
-SOURCES = main.cpp
-SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
-SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl2.cpp $(IMGUI_DIR)/backends/imgui_impl_sdlrenderer.cpp
-OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))
-UNAME_S := $(shell uname -s)
-LIBS =
+OBJS = $(addprefix Out/, $(addsuffix .o, $(notdir $(basename $(SOURCES)))))
+LINKS = -LC:\C++\Libs\SDL2-3\lib
+LIBS = -lgdi32 -lopengl32 -limm32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -mwindows -lmingw32
 
-##---------------------------------------------------------------------
-## BUILD FLAGS PER PLATFORM
-##---------------------------------------------------------------------
-
-ifeq ($(OS), Windows_NT)
-	ECHO_MESSAGE = "MinGW"
-	LIBS += -lgdi32 -lopengl32 -limm32 -LC:\C++\Libs\SDL2-3\lib -lmingw32 -lSDL2main -lSDL2 -mwindows
-
-	CXXFLAGS += -IC:\C++\Libs\SDL2-3\include/SDL2 -Dmain=SDL_main
-	CFLAGS = $(CXXFLAGS)
-endif
+# CFLAGS += $(INCLUDES) $(LINKS) $(LIBS)
 
 ##---------------------------------------------------------------------
 ## BUILD RULES
 ##---------------------------------------------------------------------
 
-%.o:%.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
-
-%.o:$(IMGUI_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
-
-%.o:$(IMGUI_DIR)/backends/%.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+$(OBJS) : $(SOURCES)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 all: $(EXE)
 	@echo Build complete for $(ECHO_MESSAGE)
 
 $(EXE): $(OBJS)
-	$(CXX) -o $@ $^ $(CXXFLAGS) $(LIBS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 clean:
 	rm -f $(EXE) $(OBJS)

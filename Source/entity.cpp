@@ -1,6 +1,6 @@
-#include "common.h"
+#include "HEADER.h"
 
-Entity::Entity(int x, int y, App app, std::string path, std::string name) {
+Entity::Entity(int x, int y, Game app, std::string path, std::string name) {
 	this->pos = Point(x, y);
 	this->name = name;
 	this->setTexture(app, path);
@@ -10,7 +10,7 @@ Entity::Entity(int x, int y, App app, std::string path, std::string name) {
 	}
 }
 
-void Entity::setTexture(App app, std::string path) {
+void Entity::setTexture(Game app, std::string path) {
 	static SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 	this->entityTex = SDL_CreateTextureFromSurface(app.renderer, loadedSurface);
 
@@ -21,7 +21,7 @@ void Entity::setTexture(App app, std::string path) {
 	SDL_FreeSurface(loadedSurface);
 }
 
-void Entity::render(App app) {
+void Entity::render(Game app) {
 	//TODO: Here
 }
 

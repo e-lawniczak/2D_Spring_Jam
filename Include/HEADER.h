@@ -1,5 +1,4 @@
-#ifndef COMMON_HEADERS
-#define COMMON_HEADERS
+#pragma once
 
 #include <iostream>
 #include <cstdlib>
@@ -12,16 +11,10 @@
 #include<SDL_mixer.h>
 #include<SDL_ttf.h>
 
-
-#include "defs.h"
 #include "point.h"
 #include "app.h"
+#include "defs.h"
+#include "entity.h"
+#include "init.h"
 #include "load_media.h"
 #include "map_grid.h"
-#include "entity.h"
-
-
-extern App app;
-extern TTF_Font* gFont;
-
-#endif

@@ -1,6 +1,4 @@
-#ifndef POINT_HEADERS
-#define POINT_HEADERS
-
+#pragma once
 struct Point {
 	int x = 0;
 	int y = 0;
@@ -17,5 +15,3 @@ struct Point {
 	int dotProd(int x, int y);
 	float distance();
 };
-
-#endif

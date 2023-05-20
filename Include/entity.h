@@ -1,13 +1,12 @@
-#ifndef ENTITY_HEADERS
-#define ENTITY_HEADERS
+#pragma once
 
 class Entity {
 	public:
-		Entity(int x, int y, App app, std::string path, std::string name);
+		Entity(int x, int y, Game app, std::string path, std::string name);
 		~Entity();
 		void free();
-		void setTexture(App app, std::string path);
-		void render(App app);
+		void setTexture(Game app, std::string path);
+		void render(Game app);
 		Point* getPos();
 		SDL_Texture* getTexture();
 
@@ -16,6 +15,3 @@ class Entity {
 		Point pos;
 		SDL_Texture * entityTex = nullptr;
 };
-
-
-#endif

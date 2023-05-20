@@ -1,10 +1,10 @@
-#include "common.h"
+#include "HEADER.h"
 
-App::App() {
-    this->renderScreenPtr = &App::renderStartScreen;
+Game::Game() {
+    this->renderScreenPtr = &Game::renderStartScreen;
 }
 
-void App::renderStartScreen() {
+void Game::renderStartScreen() {
 	SDL_SetRenderDrawColor(this->renderer, 173, 239, 124, 255);
 	SDL_RenderClear(this->renderer);
 
@@ -29,7 +29,7 @@ void App::renderStartScreen() {
     */
 }
 
-void App::renderGameScreen() {
+void Game::renderGameScreen() {
 	SDL_SetRenderDrawColor(this->renderer, 173, 239, 255, 255);
 	SDL_RenderClear(this->renderer);
 
@@ -44,28 +44,28 @@ void App::renderGameScreen() {
     */
 }
 
-void App::renderEndScreen() {
+void Game::renderEndScreen() {
     SDL_SetRenderDrawColor(this->renderer, 173, 239, 124, 255);
     SDL_RenderClear(this->renderer);
 }
 
-void App::presentScene() {
+void Game::presentScene() {
 	SDL_RenderPresent(this->renderer);
 }
 
-void App::changeScreen(int screen) {
+void Game::changeScreen(int screen) {
     switch (screen) {
 		case 0:
-			this->renderScreenPtr = &App::renderStartScreen;
-			this->inputScreenPtr = &App::inputStartScreen;
+			this->renderScreenPtr = &Game::renderStartScreen;
+			this->inputScreenPtr = &Game::inputStartScreen;
 			break;
 		case 1:
-			this->renderScreenPtr = &App::renderGameScreen;
-			this->inputScreenPtr = &App::inputGameScreen;
+			this->renderScreenPtr = &Game::renderGameScreen;
+			this->inputScreenPtr = &Game::inputGameScreen;
 			break;
 		case 2:
-			this->renderScreenPtr = &App::renderEndScreen;
-			this->inputScreenPtr = &App::inputEndScreen;
+			this->renderScreenPtr = &Game::renderEndScreen;
+			this->inputScreenPtr = &Game::inputEndScreen;
 			break;
 		default:
 			throw std::runtime_error("Invalid screen.\
@@ -74,19 +74,19 @@ void App::changeScreen(int screen) {
 	}
 }
 
-void App::free() {}
+void Game::free() {}
 
-void App::logic() {
+void Game::logic() {
 	while (SDL_PollEvent(&this->event)) {
 		switch (this->event.type) {
 			case SDL_QUIT:
 				this->running = false;
 			case (SDL_KEYDOWN):
-				(app.*(app.inputScreenPtr))(event.key.keysym.sym);
+				(this->*(this->inputScreenPtr))(event.key.keysym.sym);
 		}
 	}
 }
 
-void App::inputStartScreen(SDL_Keycode key) {}
-void App::inputGameScreen(SDL_Keycode key) {}
-void App::inputEndScreen(SDL_Keycode key) {}
+void Game::inputStartScreen(SDL_Keycode key) {}
+void Game::inputGameScreen(SDL_Keycode key) {}
+void Game::inputEndScreen(SDL_Keycode key) {}

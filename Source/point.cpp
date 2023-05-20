@@ -1,4 +1,4 @@
-#include "common.h"
+#include "HEADER.h"
 
 Point::Point() {}
 Point::Point(int new_x, int new_y) {

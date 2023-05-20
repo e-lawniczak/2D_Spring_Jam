@@ -1,9 +1,6 @@
-#ifndef INIT_HEADERS
-#define INIT_HEADERS
-#include "common.h"
+#pragma once
+#include "HEADER.h"
 
-void initSDL(App * app);
+void initSDL(Game * app);
 
 void close();
-
-#endif

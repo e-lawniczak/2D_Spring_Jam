@@ -1,7 +1,6 @@
-#include "common.h"
-#include "init.h"
+#include "HEADER.h"
 
-App app;
+Game app;
 
 SDL_Texture gBackgroundTexture;
 SDL_Texture gTextTexture;

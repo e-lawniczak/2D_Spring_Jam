@@ -2,6 +2,7 @@
 *.vs
 *x64/*
 .vscode/*
+makefile
 
 
 
