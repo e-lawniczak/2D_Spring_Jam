@@ -3,6 +3,7 @@
 
 Stage::Stage()
 {
+	currentScreen = START_SCREEN;
 }
 Stage::Stage(Screen initScreen)
 {
@@ -40,6 +41,11 @@ void Stage::draw()
 		LTexture* currentTex = getScreen().getTexture();
 		currentTex->render((SCREEN_WIDTH - currentTex->getWidth()) / 2, (SCREEN_HEIGHT - currentTex->getHeight()) / 2);
 	}
+}
+
+void Stage::initStage()
+{
+	startScreen.setText("Press LMB to start");
 }
 
 Screen Stage::getScreen()

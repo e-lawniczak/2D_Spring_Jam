@@ -13,6 +13,7 @@ public:
 	void free();
 	void logic();
 	void draw();
+	void initStage();
 	Screen getScreen();
 
 
