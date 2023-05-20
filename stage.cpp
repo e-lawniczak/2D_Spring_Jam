@@ -20,6 +20,7 @@ void Stage::free()
 
 void Stage::logic()
 {
+	currentScreen.logic();
 	// go to the game screen on LMB click
 	if (app.mouse[LMB] && getScreen().getType() == START_SCREEN) {
 
@@ -36,6 +37,7 @@ void Stage::logic()
 
 void Stage::draw()
 {
+	currentScreen.draw();
 	// display start and end text
 	if (getScreen().getType() == START_SCREEN || getScreen().getType() == END_SCREEN) {
 		LTexture* currentTex = getScreen().getTexture();

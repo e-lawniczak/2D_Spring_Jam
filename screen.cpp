@@ -86,6 +86,7 @@ void Screen::draw()
 }
 void Screen::handleGameScreen()
 {
+	gBackgroundTexture.render(0, 0);
 }
 
 void Screen::handleStartScreen()
