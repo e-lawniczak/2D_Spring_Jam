@@ -5,17 +5,19 @@
 MapGrid::MapGrid()
 {
 	int start_w = 400, start_h = 290;
-	grid = new GridTile * [GRID_HEIGHT];
+	currentX = 0;
+	currentY = 0;
 
-	for (int i = 0; i < GRID_HEIGHT; i++)
+	std::vector<std::vector<GridTile>> vGrid(GRID_WIDTH, std::vector<GridTile>(GRID_HEIGHT, GridTile()));
+	for (int i = 0; i < vGrid.size(); i++)
 	{
-		grid[i] = new GridTile[GRID_WIDTH];
-		for (int j = 0; j < GRID_WIDTH; j++)
+		for (int j = 0; j < vGrid[i].size(); j++)
 		{
-			grid[i][j] = GridTile();
-			grid[i][j].setPos(Point(start_w + (j * 40), start_h + (i * 40)));
+			vGrid[i][j].setPos(Point(start_w + (i * 40), start_h + (j * 40)));
 		}
 	}
+	grid = vGrid;
+			//grid[h][w].setPos(Point(start_w + (w * 40), start_h + (h * 40)));
 }
 
 MapGrid::~MapGrid()
@@ -27,7 +29,7 @@ void MapGrid::free()
 {
 }
 
-GridTile** MapGrid::getGrid()
+std::vector<std::vector<GridTile>> MapGrid::getGrid()
 {
 	return grid;
 }
@@ -66,4 +68,24 @@ TileType GridTile::getType()
 Point GridTile::getPos()
 {
 	return pos;
+}
+
+int MapGrid::setCurrentX(int v)
+{
+	return 0;
+}
+
+int MapGrid::setCurrentY(int v)
+{
+	return 0;
+}
+
+int MapGrid::getCurrentX()
+{
+	return 0;
+}
+
+int MapGrid::getCurrentY()
+{
+	return 0;
 }

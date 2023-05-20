@@ -13,6 +13,7 @@ public:
 	void setType(TileType type);
 	TileType getType();
 	Point getPos();
+
 private:
 	Point pos;
 	TileType type;
@@ -25,9 +26,15 @@ public:
 	MapGrid();
 	~MapGrid();
 	void free();
-	GridTile** getGrid();
+	std::vector<std::vector<GridTile>> getGrid();
+	int setCurrentX(int v);
+	int setCurrentY(int v);
+	int getCurrentX();
+	int getCurrentY();
 private:
-	GridTile** grid;
+	std::vector<std::vector<GridTile>> grid;
+	int currentX;
+	int currentY;
 };
 
 

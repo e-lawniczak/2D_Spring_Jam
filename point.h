@@ -12,6 +12,8 @@ public:
 	void setX(int x);
 	void setY(int y);
 
+	void newPos(Point p);
+
 private:
 	int x;
 	int y;

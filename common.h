@@ -5,7 +5,7 @@
 #include <math.h>
 #include <ctime>
 #include <cstdio>
-
+#include<vector>
 #include<SDL.h>
 #include<SDL_image.h>
 #include <string>
@@ -19,9 +19,10 @@
 #include "texture.h"
 #include "load_media.h"
 #include "item.h"
-#include "entity.h"
 #include "map_grid.h"
+#include "entity.h"
 #include "unit.h"
+#include "game_engine.h"
 
 extern App app;
 extern LTexture gBackgroundTexture;

@@ -39,3 +39,7 @@ void Point::setY(int aY)
 {
 	y = aY;
 }
+void Point::newPos(Point p) {
+	x = p.getX();
+	y = p.getY();
+}

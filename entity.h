@@ -11,14 +11,20 @@ public:
 	void render();
 	void move(Point p);
 	void setName(std::string name);
+	void setMoved(bool v);
+	bool getMoved();
+	void handleOverlandMovement(MapGrid* grid);
 	std::string getName();
 	Point* getPos();
 	LTexture* getTexture();
+	Entity* next;
 
 private:
 	std::string name;
 	Point pos;
 	LTexture entityTex;
+	bool moved;
+
 };
 
 

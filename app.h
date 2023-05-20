@@ -21,6 +21,7 @@ private:
 	Screens currentScreen;
 	LTexture textTexture;
 	std::string screenText;
+	GameEngine engine;
 };
 
 #endif 

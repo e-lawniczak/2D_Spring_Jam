@@ -6,6 +6,7 @@ Application::Application()
 	currentScreen = START_SCREEN;
 	screenText = "Press LMB to start";
 	textTexture = LTexture();
+	engine = GameEngine();
 }
 
 Application::~Application()
@@ -48,9 +49,9 @@ void Application::handleStart()
 	textTexture.render((SCREEN_WIDTH - textTexture.getWidth()) / 2, (SCREEN_HEIGHT - textTexture.getHeight()) / 2);
 	if (app.mouse[LMB] && currentScreen == START_SCREEN) {
 		setText("Press q to end");
+		engine.init();
 		currentScreen = GAME_SCREEN;
 	}
-
 
 
 }
@@ -62,9 +63,9 @@ void Application::handleGame()
 		currentScreen = END_SCREEN;
 	}
 
-
 	gBackgroundTexture.render(0, 0);
 	textTexture.render(10, 10);
+	engine.gameLoop();
 }
 
 void Application::handleEnd()

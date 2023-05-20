@@ -17,7 +17,7 @@ public:
 	int getDef();
 	int getDoge();
 	int getType();
-
+	Item* next;
 
 
 private:
