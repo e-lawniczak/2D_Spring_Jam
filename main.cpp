@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
 		imguiFrame();
 		handleInput();
 
+		encounterGui();
 		application.handleScreen();
 
 		presentScene();

@@ -64,6 +64,11 @@ void close()
 	TTF_CloseFont(gFont);
 	gFont = NULL;
 
+	// Cleanup
+	ImGui_ImplSDLRenderer_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
+
 	//Destroy window    
 	SDL_DestroyRenderer(app.renderer);
 	SDL_DestroyWindow(app.window);
