@@ -51,3 +51,58 @@ std::string Screen::getText()
     return screenText;
 }
 
+
+
+void Screen::logic()
+{
+	switch (type) {
+	case START_SCREEN:
+		handleStartScreen();
+		break;
+	case END_SCREEN:
+		handleEndScreen();
+		break;
+
+	default:
+		handleGameScreen();
+		break;
+	}
+}
+
+void Screen::draw()
+{
+	switch (type) {
+	case START_SCREEN:
+		drawStartScreen();
+		break;
+	case END_SCREEN:
+		drawEndScreen();
+		break;
+
+	default:
+		drawGameScreen();
+		break;
+	}
+}
+void Screen::handleGameScreen()
+{
+}
+
+void Screen::handleStartScreen()
+{
+}
+
+void Screen::handleEndScreen()
+{
+}
+void Screen::drawGameScreen()
+{
+}
+
+void Screen::drawStartScreen()
+{
+}
+
+void Screen::drawEndScreen()
+{
+}
