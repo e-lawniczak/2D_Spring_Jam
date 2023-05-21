@@ -22,7 +22,7 @@ bool loadImages()
         printf("Failed to load background texture image!\n");
         success = false;
     }
-    if (!enemy2tex.loadFromFile("img/blue_snowman.png"))
+    if (!enemy2tex.loadFromFile("img/snake.png"))
     {
         printf("Failed to load background texture image!\n");
         success = false;
