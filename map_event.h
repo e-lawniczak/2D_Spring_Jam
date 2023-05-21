@@ -28,11 +28,7 @@ private:
 	Item item;
 	std::vector<Unit> enemies;
 	Unit boss;
-<<<<<<< Updated upstream
 	int windowWeight;
-=======
-
->>>>>>> Stashed changes
 };
 
 #endif 
