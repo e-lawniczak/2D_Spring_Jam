@@ -91,6 +91,7 @@ void Unit::basicAttackUnit(Unit* u)
 
 	}
 	else {
+		playSound(SND_DOGE, CH_PLAYER);
 
 	}
 
