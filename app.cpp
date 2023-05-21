@@ -115,6 +115,24 @@ void Application::handleEnd()
 	if (app.keyboard[SDL_SCANCODE_SPACE] && currentScreen == END_SCREEN) {
 		endGame = true;
 	}
+	ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 2 - 170 , SCREEN_HEIGHT  - 270));
+	ImGui::SetNextWindowSize(ImVec2(550, 200));
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(1.0f, 0.0f, 0.0f, 0.0f));
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+	ImGui::Begin("End!", &startPtr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
+	std::string text = "Welcome to the Chicken Adventure!!!";
+	auto windowWidth = ImGui::GetWindowSize().x;
+	auto textWidth = ImGui::CalcTextSize(text.c_str()).x;
+
+	ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
+	if (ImGui::Button("Quit")) {
+		playSound(SND_MENU_CLICK, CH_MENU_SOUND);
+		startPtr = false;
+		endGame = true;
+	}
+	ImGui::PopStyleVar();
+	ImGui::PopStyleColor();
+	ImGui::End();
 }
 
 void Application::setText(std::string text)
