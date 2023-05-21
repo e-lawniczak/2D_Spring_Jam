@@ -30,13 +30,12 @@ int main(int argc, char* argv[]) {
 	application.init();
 	while (1)
 	{
-		prepareScene(application.getScreen());
 		imguiFrame();
 		handleInput();
 
 		application.handleScreen();
 
-		presentScene();
+		presentScene(application.getScreen());
 		imguiRender();
 		SDL_Delay(16);
 	}
