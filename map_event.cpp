@@ -59,7 +59,7 @@ void MapEvent::bossEvent()
 		playChannel(SND_BATTLE, CH_BATTLE, 1);
 	if (enemies.empty() && boss.getHp() <= 0) {
 		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 2 - (windowWeight / 2), 20));
-		ImGui::SetNextWindowSize(ImVec2(windowWeight, 70));
+		ImGui::SetNextWindowSize(ImVec2(windowWeight, 80));
 		ImGui::Begin("Encounter event", &bossEventPtr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
 		ImGui::Text("You defeated the BOSS!");
 
@@ -84,7 +84,7 @@ void MapEvent::curioEvent()
 void MapEvent::itemEvent()
 {
 	ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 2 - (windowWeight / 4), 20));
-	ImGui::SetNextWindowSize(ImVec2(windowWeight/2, 250));
+	ImGui::SetNextWindowSize(ImVec2(windowWeight / 2, 250));
 	ImGui::Begin("Item event", &itemEventPtr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
 	ImGui::Text("You found an item!");
 	ImGui::Text(item.getName().c_str());
