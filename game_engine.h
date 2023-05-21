@@ -18,6 +18,8 @@ public:
 private:
 	void handleEncounter(GridTile* tile);
 	void displayPlayerStats();
+	void invokeTargetPicker(bool isStrong);
+	void handleAttack(Unit& u, bool isStrong);
 	MapGrid grid;
 	Unit player;
 	int timer;

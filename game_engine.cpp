@@ -52,7 +52,7 @@ void GameEngine::gameLoop()
 	GridTile* tile = grid.getCurrentTilePtr();
 	//std::cout << encounterStarted << currentEnemies.empty() << tile->getEvent()->getEventFired() << std::endl;
 	if (tile->getType() != EMPTY && !tile->getEvent()->getEventFired()) {
-	
+
 		tile->triggerEvent(tile->getType(), encounterStarted);
 	}
 	else if (tile->getEvent()->getEventFired()) {
@@ -167,9 +167,10 @@ void GameEngine::handleEncounter(GridTile* tile)
 
 void GameEngine::displayPlayerStats()
 {
+	static int flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove;
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui::SetNextWindowSize(ImVec2(250, SCREEN_HEIGHT));
-	ImGui::Begin("Chicken!", &eqPtr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
+	ImGui::Begin("Chicken!", &eqPtr, flags);
 	ImGui::Text("~~~~~~~~~~~~~~~~~~");
 	ImGui::Text("STATS");
 	ImGui::Text("Hp: %d/%d", player.getHp(), player.getMaxHp());
@@ -185,15 +186,24 @@ void GameEngine::displayPlayerStats()
 		ImGui::Text("~~~~~~~~~~~~~~~~~~");
 		ImGui::Text("ACTIONS");
 		if (ImGui::Button("Normal attack")) {
-
+			//invokeTargetPicker(0);
 		}
 		if (ImGui::Button("Strong attack")) {
-
+			//invokeTargetPicker(1);
 		}
 	}
 
 	ImGui::End();
 
+}
+
+void GameEngine::handleAttack(Unit& u, bool isStrong) {
+	if (isStrong) {
+		player.strongAttackUnit(&u);
+	}
+	else {
+		player.basicAttackUnit(&u);
+	}
 }
 
 void GameEngine::handleOverlandMovement()
