@@ -76,15 +76,9 @@ void Unit::addEq(Item i)
 }
 
 void Unit::dealDmg(int dmg) {
-	std::cout << "Dealing dmg: " << hp << std::endl;
 
 	if (hp > 0) {
 		hp -= dmg;
-	}
-	std::cout << "Dmg dealt: " << hp << std::endl;
-
-	if (hp <= 0) {
-		std::cout << getName() << " is down" << std::endl;
 	}
 }
 
