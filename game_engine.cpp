@@ -128,10 +128,14 @@ void GameEngine::handleEncounter(GridTile* tile)
 	}
 	player.move(Point((SCREEN_WIDTH / 3), SCREEN_HEIGHT / 2));
 
-	if (app.keyboard[SDL_SCANCODE_H] && !currentEnemies.empty()) {
-		std::cout << currentEnemies.size() << std::endl;
-		playSound(SND_HIT, CH_PLAYER);
-		currentEnemies.pop_back();
+	std::cout<< currentEnemies.size()<<"\n";
+	if (!currentEnemies.empty()) {
+		for (int i = 0; i < n; i++) {
+			Unit* u = &currentEnemies.at(i);
+			if (u->getHp() <= 0) {
+				currentEnemies.erase(currentEnemies.begin() + i);
+			}
+		}
 	}
 	else if (app.keyboard[SDL_SCANCODE_G] && currentBoss.getHp() > 0) {
 		std::cout << currentBoss.getName() << std::endl;
@@ -185,11 +189,20 @@ void GameEngine::displayPlayerStats()
 	if (encounterStarted) {
 		ImGui::Text("~~~~~~~~~~~~~~~~~~");
 		ImGui::Text("ACTIONS");
+		Unit* enemy;
+		if (currentEnemies.size() > 0) {
+			enemy = &currentEnemies[currentEnemies.size() -1 ];
+		}
+		else {
+			enemy = &currentBoss;
+		}
+
 		if (ImGui::Button("Normal attack")) {
-			//invokeTargetPicker(0);
+			player.basicAttackUnit(enemy);
+
 		}
 		if (ImGui::Button("Strong attack")) {
-			//invokeTargetPicker(1);
+			player.strongAttackUnit(enemy);
 		}
 	}
 
@@ -197,14 +210,7 @@ void GameEngine::displayPlayerStats()
 
 }
 
-void GameEngine::handleAttack(Unit& u, bool isStrong) {
-	if (isStrong) {
-		player.strongAttackUnit(&u);
-	}
-	else {
-		player.basicAttackUnit(&u);
-	}
-}
+
 
 void GameEngine::handleOverlandMovement()
 {
