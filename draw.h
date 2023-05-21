@@ -1,7 +1,8 @@
 #ifndef DRAW_HEADERS
 #define DRAW_HEADERS
 
-void presentScene(Screens screen);
+void prepareScene(Screens screen);
+void presentScene(void);
 
 /**
  * @brief This is the drawing function for the ImGui overlay, so for like GUI components
