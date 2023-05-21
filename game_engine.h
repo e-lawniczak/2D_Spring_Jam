@@ -13,7 +13,7 @@ public:
 	void gameLoop();
 	void handleOverlandMovement();
 	bool getGameFinished();
-
+	void resetFrameCounterEvery(int floor);
 	
 private:
 	void handleEncounter(GridTile *tile);
@@ -25,6 +25,10 @@ private:
 	Unit currentBoss;
 	bool encounterStarted;
 
+	//player
+	int frameCount;
+	bool playerAnimationState;
+	int spriteDuration;
 	
 };
 

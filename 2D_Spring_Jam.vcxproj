@@ -193,6 +193,8 @@
   <ItemGroup>
     <Image Include="img\background.png" />
     <Image Include="img\player.png" />
+    <Image Include="img\player\player01.png" />
+    <Image Include="img\player\player02.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\..\dogica.ttf" />

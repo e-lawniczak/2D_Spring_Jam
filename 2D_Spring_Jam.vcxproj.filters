@@ -19,6 +19,9 @@
     <Filter Include="Resource Files\font">
       <UniqueIdentifier>{893b0d0d-43e9-456c-8c65-09015c7bfc98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\img\player">
+      <UniqueIdentifier>{47d1ae92-3f40-41b1-841f-2271d3fb0156}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -201,6 +204,12 @@
     </Image>
     <Image Include="img\player.png">
       <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="img\player\player01.png">
+      <Filter>Resource Files\img\player</Filter>
+    </Image>
+    <Image Include="img\player\player02.png">
+      <Filter>Resource Files\img\player</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

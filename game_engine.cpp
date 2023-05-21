@@ -9,7 +9,9 @@ GameEngine::GameEngine()
 	currentEnemies = std::vector<Unit>();
 	currentBoss = Unit();
 	encounterStarted = false;
-
+	frameCount = 0;
+	playerAnimationState = true;
+	spriteDuration = 30;
 }
 
 GameEngine::~GameEngine()
@@ -27,7 +29,14 @@ void GameEngine::init()
 	player.setIsMonster(0);
 	player.setHp(10);
 	player.setAtk(10);
+	frameCount = 0;
 
+}
+
+void GameEngine::resetFrameCounterEvery(int floor) {
+	if (frameCount % floor == 0) {
+		frameCount = 0;
+	}
 }
 
 void GameEngine::gameLoop()
@@ -120,6 +129,20 @@ void GameEngine::handleEncounter(GridTile* tile)
 		gBackgroundTexture.render(0, 0);
 		player.move(grid.getCurrentTilePtr()->getPos());
 	}
+
+	if (frameCount % spriteDuration == 0) {
+		if (playerAnimationState) {
+			player.setTexture("img/player/player01.png");
+			playerAnimationState = false;
+		}
+		else
+		{
+			player.setTexture("img/player/player02.png");
+			playerAnimationState = true;
+		}
+	}
+	resetFrameCounterEvery(spriteDuration*2);
+	frameCount += 1;
 }
 
 void GameEngine::handleOverlandMovement()
