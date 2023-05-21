@@ -16,6 +16,8 @@ public:
 	void setCurrentY(int v);
 	int getCurrentX();
 	int getCurrentY();
+	int getPrevX();
+	int getPrevY();
 	GridTile getCurrentTile();
 	GridTile* getCurrentTilePtr();
 	GridTile getPrevTile();

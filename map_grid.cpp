@@ -76,6 +76,15 @@ int MapGrid::getCurrentY()
 {
 	return currentY;
 }
+int MapGrid::getPrevX()
+{
+	return prevX;
+}
+
+int MapGrid::getPrevY()
+{
+	return prevY;
+}
 
 GridTile MapGrid::getCurrentTile()
 {

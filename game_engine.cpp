@@ -11,9 +11,12 @@ GameEngine::GameEngine()
 	currentBoss = Unit();
 	encounterStarted = false;
 	eqPtr = true;
+	deadPtr = false;
 	frameCount = 0;
 	playerAnimationState = true;
 	spriteDuration = 30;
+	playerDead = false;
+	valueChanged = false;
 }
 
 GameEngine::~GameEngine()
@@ -50,46 +53,80 @@ void GameEngine::gameLoop()
 
 
 	GridTile* tile = grid.getCurrentTilePtr();
-	//std::cout << encounterStarted << currentEnemies.empty() << tile->getEvent()->getEventFired() << std::endl;
-	if (tile->getType() != EMPTY && !tile->getEvent()->getEventFired()) {
 
-		tile->triggerEvent(tile->getType(), encounterStarted);
-	}
-	else if (tile->getEvent()->getEventFired()) {
-		player.setMoved(false);
-	}
-	else if (tile->getType() == EMPTY) {
-		player.setMoved(false);
-	}
-
-	if (tile->getType() == ENCOUNTER || tile->getType() == BOSS) {
-		//encounterStarted = true;
-		if (!encounterStarted && !currentEnemies.empty())
-			encounterStarted = true;
-		handleEncounter(tile);
-		if (!tile->getVisited())
-			tile->setVisited(true);
-
-	}
-
-	if (tile->getType() == ITEM && !tile->getEvent()->getEventFired()) {
-		Item i = tile->getEvent()->getItem();
-		if (!tile->getEvent()->getItem().getUsed()) {
-			player.addEq(tile->getEvent()->getItem());
-			player.setMaxHp(player.getMaxHp() + i.getHp());
-			player.setHp(player.getHp() + i.getHp());
-			player.setAtkBonus(player.getAtkBonus() + i.getAtk());
-			player.setDefBonus(player.getDefBonus() + i.getDef());
-			player.setDogeBonus(player.getDogeBonus() + i.getDoge());
+	if (player.getHp() <= 0) {
+		if (!playerDead) {
+			playerDead = true;
+			encounterStarted = false;
+			tile->triggerEvent(tile->getType(), encounterStarted);
+			tile->getEvent()->setEventFired(false);
+			tile->setVisited(false);
+			deadPtr = true;
+			currentEnemies = std::vector<Unit>();
+			currentBoss = Unit();
+			grid.setCurrentX(grid.getPrevX());
+			grid.setCurrentY(grid.getPrevY());
+			gBackgroundTexture.loadFromFile("img/overland_map.png");
+			gBackgroundTexture.render(0, 0);
+			tile->triggerEvent(tile->getType(), encounterStarted);
 		}
-		tile->getEvent()->getItemPtr()->setUsed(true);
-
+		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 2 - 125, SCREEN_HEIGHT / 3 ));
+		ImGui::SetNextWindowSize(ImVec2(250, 200));
+		ImGui::Begin("You died!", &deadPtr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
+		ImGui::Text("You were felled by a powerful foe!");
+		ImGui::Text("But you can't stop here!");
+		if (ImGui::Button("Rest and continue!")) {
+			player.setHp(player.getMaxHp());
+			playerDead = false;
+			deadPtr = false;
+		}
+		if (ImGui::Button("Quit!?")) {
+			playerDead = false;
+			gameFinished = true;
+			deadPtr = false;
+		}
+		ImGui::End();
 	}
+	else {
+		if (tile->getType() != EMPTY && !tile->getEvent()->getEventFired()) {
 
-	if (tile->getType() == BOSS && tile->getEvent()->getEventFired()) {
-		gameFinished = true;
+			tile->triggerEvent(tile->getType(), encounterStarted);
+		}
+		else if (tile->getEvent()->getEventFired()) {
+			player.setMoved(false);
+		}
+		else if (tile->getType() == EMPTY) {
+			player.setMoved(false);
+		}
+
+		if (tile->getType() == ENCOUNTER || tile->getType() == BOSS) {
+			//encounterStarted = true;
+			if (!encounterStarted && !currentEnemies.empty())
+				encounterStarted = true;
+			handleEncounter(tile);
+			if (!tile->getVisited())
+				tile->setVisited(true);
+
+		}
+
+		if (tile->getType() == ITEM && !tile->getEvent()->getEventFired()) {
+			Item i = tile->getEvent()->getItem();
+			if (!tile->getEvent()->getItem().getUsed()) {
+				player.addEq(tile->getEvent()->getItem());
+				player.setMaxHp(player.getMaxHp() + i.getHp());
+				player.setHp(player.getHp() + i.getHp());
+				player.setAtkBonus(player.getAtkBonus() + i.getAtk());
+				player.setDefBonus(player.getDefBonus() + i.getDef());
+				player.setDogeBonus(player.getDogeBonus() + i.getDoge());
+			}
+			tile->getEvent()->getItemPtr()->setUsed(true);
+
+		}
+
+		if (tile->getType() == BOSS && tile->getEvent()->getEventFired()) {
+			gameFinished = true;
+		}
 	}
-
 	player.render();
 
 }
@@ -128,7 +165,7 @@ void GameEngine::handleEncounter(GridTile* tile)
 	}
 	player.move(Point((SCREEN_WIDTH / 3), SCREEN_HEIGHT / 2));
 
-	std::cout<< currentEnemies.size()<<"\n";
+	std::cout << currentEnemies.size() << "\n";
 	if (!currentEnemies.empty()) {
 		for (int i = 0; i < n; i++) {
 			Unit* u = &currentEnemies.at(i);
@@ -191,7 +228,7 @@ void GameEngine::displayPlayerStats()
 		ImGui::Text("ACTIONS");
 		Unit* enemy;
 		if (currentEnemies.size() > 0) {
-			enemy = &currentEnemies[currentEnemies.size() -1 ];
+			enemy = &currentEnemies[currentEnemies.size() - 1];
 		}
 		else {
 			enemy = &currentBoss;
@@ -223,6 +260,7 @@ void GameEngine::handleOverlandMovement()
 			GridTile t = g[moveX][moveY];
 			player.getPos()->newPos(t.getPos());
 			player.setMoved(true);
+			valueChanged = false;
 
 		}
 	}
@@ -233,6 +271,7 @@ void GameEngine::handleOverlandMovement()
 			GridTile t = g[moveX][moveY];
 			player.getPos()->newPos(t.getPos());
 			player.setMoved(true);
+			valueChanged = false;
 
 		}
 	}
@@ -244,6 +283,7 @@ void GameEngine::handleOverlandMovement()
 			GridTile t = g[moveX][moveY];
 			player.getPos()->newPos(t.getPos());
 			player.setMoved(true);
+			valueChanged = false;
 		}
 	}
 	if (app.keyboard[SDL_SCANCODE_DOWN] && !player.getMoved()) {
@@ -254,11 +294,13 @@ void GameEngine::handleOverlandMovement()
 			GridTile t = g[moveX][moveY];
 			player.getPos()->newPos(t.getPos());
 			player.setMoved(true);
+			valueChanged = false;
 		}
 	}
-	if (player.getMoved()) {
+	if (player.getMoved() && !valueChanged) {
 		grid.setCurrentX(moveX);
 		grid.setCurrentY(moveY);
+		valueChanged = true;
 	}
 }
 

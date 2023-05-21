@@ -28,7 +28,9 @@ private:
 	Unit currentBoss;
 	bool encounterStarted;
 	bool eqPtr;
-
+	bool deadPtr;
+	bool playerDead;
+	bool valueChanged;
 	//player
 	int frameCount;
 	bool playerAnimationState;
