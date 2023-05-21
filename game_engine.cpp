@@ -43,8 +43,7 @@ void GameEngine::gameLoop()
 	GridTile* tile = grid.getCurrentTilePtr();
 	//std::cout << encounterStarted << currentEnemies.empty() << tile->getEvent()->getEventFired() << std::endl;
 	if (tile->getType() != EMPTY && !tile->getEvent()->getEventFired()) {
-		if (!encounterStarted && !currentEnemies.empty())
-			encounterStarted = true;
+		
 		tile->triggerEvent(tile->getType(), encounterStarted);
 	}
 	else if (tile->getEvent()->getEventFired()) {
@@ -56,6 +55,8 @@ void GameEngine::gameLoop()
 
 	if (tile->getType() == ENCOUNTER || tile->getType() == BOSS) {
 		//encounterStarted = true;
+		if (!encounterStarted && !currentEnemies.empty())
+			encounterStarted = true;
 		handleEncounter(tile);
 		if (!tile->getVisited())
 			tile->setVisited(true);
