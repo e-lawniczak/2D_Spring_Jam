@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
 	playChannel(SND_MAIN_THEME, CH_MUSIC, 1);
 	Application application;
 	application.init();
-	while (1)
+	while (!application.getEndGame())
 	{
 		imguiFrame();
 		handleInput();

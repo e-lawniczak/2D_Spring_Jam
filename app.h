@@ -10,7 +10,8 @@ public:
 	void free();
 	void handleScreen();
 	Screens getScreen();
-	void init();
+	void init(); 
+	bool getEndGame();
 private:
 
 	void handleStart();
@@ -22,6 +23,8 @@ private:
 	LTexture textTexture;
 	std::string screenText;
 	GameEngine engine;
+	bool endGame;
+	bool startPtr;
 };
 
 #endif 

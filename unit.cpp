@@ -1,4 +1,5 @@
 #include "common.h"
+#include "sound.h"
 
 Unit::Unit()
 {
@@ -86,6 +87,11 @@ void Unit::basicAttackUnit(Unit* u)
 	int dmgDone = std::max(atk + atkBonus - (u->def + u->defBonus), 0);
 	if (rand() % 101 > u->doge) {
 		u->dealDmg(dmgDone);
+		playSound(SND_HIT, CH_PLAYER);
+
+	}
+	else {
+
 	}
 
 	if (!isRanged) {
@@ -109,6 +115,10 @@ void Unit::strongAttackUnit(Unit* u)
 	int dogeCheck = std::max((rand() % 101) + accMod, 0);
 	if (dogeCheck > (u->doge + u->dogeBonus)) {
 		u->dealDmg(dmgDone);
+		playSound(SND_HIT, CH_PLAYER);
+	}
+	else {
+
 	}
 
 	if (!isRanged) {

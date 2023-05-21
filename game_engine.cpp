@@ -198,11 +198,11 @@ void GameEngine::handleEncounter(GridTile* tile)
 			}
 		}
 	}
-	else if (app.keyboard[SDL_SCANCODE_G] && currentBoss.getHp() > 0) {
-		std::cout << currentBoss.getName() << std::endl;
-		playSound(SND_HIT, CH_PLAYER);
-		player.basicAttackUnit(&currentBoss);
-	}
+	//else if (app.keyboard[SDL_SCANCODE_G] && currentBoss.getHp() > 0) {
+	//	std::cout << currentBoss.getName() << std::endl;
+	//	playSound(SND_HIT, CH_PLAYER);
+	//	player.basicAttackUnit(&currentBoss);
+	//}
 
 	if (encounterStarted && currentEnemies.empty() && currentBoss.getHp() <= 0) {
 		encounterStarted = false;
@@ -245,9 +245,11 @@ void GameEngine::displayPlayerStats()
 		if (ImGui::Button("Normal attack")) {
 			player.basicAttackUnit(enemy);
 
+
 		}
 		if (ImGui::Button("Strong attack")) {
 			player.strongAttackUnit(enemy);
+
 		}
 	}
 
