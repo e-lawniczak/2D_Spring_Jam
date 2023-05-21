@@ -152,6 +152,7 @@
     <ClCompile Include="map_grid.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="screen.cpp" />
+    <ClCompile Include="sound.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="static_lists.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="map_grid.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="screen.h" />
+    <ClInclude Include="sound.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="static_lists.h" />
     <ClInclude Include="structs.h" />

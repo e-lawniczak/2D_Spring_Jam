@@ -2,11 +2,12 @@
 
 Unit::Unit()
 {
-	hp = 1;
+	hp = 0;
 	atk = 0;
 	def = 0;
 	doge = 0;
 	isRanged = 0;
+	isMonster = 1;
 }
 Unit::Unit(int x, int y, std::string path, std::string name, int hp, int atk, int def, int doge, bool isRanged) : Entity(x, y, path, name)
 {
@@ -15,6 +16,7 @@ Unit::Unit(int x, int y, std::string path, std::string name, int hp, int atk, in
 	this->def = def;
 	this->doge = doge;
 	this->isRanged = isRanged;
+	isMonster = 1;
 }
 
 Unit::~Unit()
@@ -31,18 +33,20 @@ void Unit::setAtk(int v) { atk = v; }
 void Unit::setDef(int v) { def = v; }
 void Unit::setDoge(int v) { doge = v; }
 void Unit::setIsRanged(int v) { isRanged = v; }
+void Unit::setIsMonster(int v) { isMonster = v; }
 int Unit::getHp() { return hp; }
 int Unit::getAtk() { return atk; }
 int Unit::getDef() { return def; }
 int Unit::getDoge() { return doge; }
 bool Unit::getIsRanged() { return isRanged; }
+bool Unit::getIsMonster() { return isMonster; }
 
 void Unit::dealDmg(int dmg) {
 	if (hp > 0) {
 		hp -= dmg;
 	}
 	if (hp <= 0) {
-		std::cout << this->getName() << " is down" << std::endl;
+		std::cout << getName() << " is down" << std::endl;
 	}
 }
 

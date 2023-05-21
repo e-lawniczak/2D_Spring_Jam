@@ -1,10 +1,11 @@
 #include "common.h"
 #include "app.h"
+#include "sound.h"
 
 Application::Application()
 {
 	currentScreen = START_SCREEN;
-	screenText = "Press LMB to start";
+	screenText = "Press SPACE to start";
 	textTexture = LTexture();
 	engine = GameEngine();
 
@@ -49,7 +50,8 @@ void Application::init()
 void Application::handleStart()
 {
 	textTexture.render((SCREEN_WIDTH - textTexture.getWidth()) / 2, (SCREEN_HEIGHT - textTexture.getHeight()) / 2);
-	if (app.mouse[LMB] && currentScreen == START_SCREEN) {
+	if (app.keyboard[SDL_SCANCODE_SPACE] && currentScreen == START_SCREEN) {
+		playSound(SND_MENU_CLICK, CH_MENU_SOUND);
 		this->setText("Press q to end");
 		engine.init();
 		currentScreen = GAME_SCREEN;
@@ -60,7 +62,7 @@ void Application::handleStart()
 
 void Application::handleGame()
 {
-	if (app.keyboard[SDL_SCANCODE_Q] && currentScreen == GAME_SCREEN) {
+	if (engine.getGameFinished() && currentScreen == GAME_SCREEN) {
 		setText("Thanks for playing");
 		currentScreen = END_SCREEN;
 	}
@@ -72,6 +74,8 @@ void Application::handleGame()
 
 void Application::handleEnd()
 {
+	gEndScreenTexture.render((SCREEN_WIDTH / 2) - gEndScreenTexture.getWidth()/2, 0);
+	textTexture.setColor((Uint8)(255), (Uint8)(255), (Uint8)(255));
 	textTexture.render((SCREEN_WIDTH - textTexture.getWidth()) / 2, (SCREEN_HEIGHT - textTexture.getHeight()) / 2);
 }
 

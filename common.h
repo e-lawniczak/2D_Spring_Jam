@@ -19,7 +19,6 @@
 #include "imgui_util.h"
 
 
-
 #include "structs.h"
 #include "defs.h"
 #include "point.h"
@@ -36,6 +35,9 @@
 
 extern App app;
 extern LTexture gBackgroundTexture;
+extern LTexture gEndScreenTexture;
+extern LTexture enemy1tex;
+extern LTexture enemy2tex;
 extern LTexture gTextTexture;
 extern TTF_Font* gFont;
 

@@ -12,9 +12,6 @@ Entity::Entity(int x, int y, std::string path, std::string name)
 	pos = Point(x, y);
 	this->name = name;
 	entityTex = LTexture();
-	if (!entityTex.loadFromFile(path)) {
-		printf("Failed to load entity texture\n");
-	}
 	next = NULL;
 	moved = false;
 }

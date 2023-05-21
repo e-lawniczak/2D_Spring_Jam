@@ -42,6 +42,27 @@ enum ItemType {
 	OTHER
 };
 
+enum
+{
+	CH_ANY = -1,
+	CH_PLAYER,
+	CH_MENU_SOUND,
+	CH_MUSIC,
+	CH_AMBIENT,
+	CH_BATTLE
+};
+
+enum
+{
+	
+	SND_MAIN_THEME,
+	SND_AMBIENT,
+	SND_MENU_CLICK,
+	SND_CONFIRM,
+	SND_BATTLE,
+	SND_MAX
+};
+
 
 
 #endif 

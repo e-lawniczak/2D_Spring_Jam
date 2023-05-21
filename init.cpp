@@ -1,6 +1,5 @@
 #include "common.h"
-
-
+#include "init.h"
 
 int initSDL() {
 	int rendererFlags;
@@ -25,6 +24,7 @@ int initSDL() {
 
 	app.renderer = SDL_CreateRenderer(app.window, -1, rendererFlags);
 
+
 	imguiInit();
 
 
@@ -48,6 +48,16 @@ int initSDL() {
 		exit(1);
 	}
 
+	int vol1 = 70;
+	int vol2 = 66;
+	Mix_AllocateChannels(8);
+	Mix_Volume(CH_ANY, vol1);
+	Mix_Volume(CH_PLAYER, vol1);
+	Mix_Volume(CH_MENU_SOUND, vol2);
+	Mix_Volume(CH_MUSIC, vol2);
+	Mix_Volume(CH_AMBIENT, vol2);
+	Mix_Volume(CH_BATTLE, 20);
+	Mix_VolumeMusic(vol2);
 
 	SDL_ShowCursor(1);
 }

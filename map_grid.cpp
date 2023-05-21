@@ -7,6 +7,7 @@ MapGrid::MapGrid()
 	int start_w = 450, start_h = 310;
 	currentX = 0;
 	currentY = 0;
+	Lists lists;
 
 	std::vector<std::vector<GridTile>> vGrid(GRID_WIDTH, std::vector<GridTile>(GRID_HEIGHT, GridTile()));
 	for (int i = 0; i < vGrid.size(); i++)
@@ -16,18 +17,18 @@ MapGrid::MapGrid()
 			vGrid[i][j].setPos(Point(start_w + (i * GRID_MOVE), start_h + (j * GRID_MOVE)));
 			if (i == 1) {
 				vGrid[i][j].setType(ENCOUNTER);
-				vGrid[i][j].getEvent()->addEnemy(Lists::enemyList[0]);
+				vGrid[i][j].getEvent()->addEnemy(lists.enemyList[0]);
 
 			}
 			if (i == 2) {
 				vGrid[i][j].setType(ITEM);
-				vGrid[i][j].getEvent()->setItem(Lists::itemList[0]);
+				vGrid[i][j].getEvent()->setItem(lists.itemList[0]);
 			}
 			if (i == 3) {
 				vGrid[i][j].setType(BOSS);
-				vGrid[i][j].getEvent()->addEnemy(Lists::enemyList[0]);
-				vGrid[i][j].getEvent()->addEnemy(Lists::enemyList[0]);
-				vGrid[i][j].getEvent()->setBoss(Lists::enemyList[1]);
+				vGrid[i][j].getEvent()->addEnemy(lists.enemyList[0]);
+				vGrid[i][j].getEvent()->addEnemy(lists.enemyList[0]);
+				vGrid[i][j].getEvent()->setBoss(lists.enemyList[1]);
 
 			}
 		}

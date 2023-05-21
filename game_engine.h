@@ -12,6 +12,7 @@ public:
 	void init();
 	void gameLoop();
 	void handleOverlandMovement();
+	bool getGameFinished();
 
 	
 private:
@@ -19,6 +20,7 @@ private:
 	MapGrid grid;
 	Unit player;
 	int timer;
+	bool gameFinished;
 
 	
 };

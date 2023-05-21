@@ -12,6 +12,21 @@ bool loadImages()
         printf("Failed to load background texture image!\n");
         success = false;
     }
+    if (!gEndScreenTexture.loadFromFile("img/end_screen.png"))
+    {
+        printf("Failed to load background texture image!\n");
+        success = false;
+    }
+    if (!enemy1tex.loadFromFile("img/sly_fox.png"))
+    {
+        printf("Failed to load background texture image!\n");
+        success = false;
+    }
+    if (!enemy2tex.loadFromFile("img/blue_snowman.png"))
+    {
+        printf("Failed to load background texture image!\n");
+        success = false;
+    }
 
     return success;
 }

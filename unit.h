@@ -13,11 +13,13 @@ public:
 	void setDef(int v);
 	void setDoge(int v);
 	void setIsRanged(int v);
+	void setIsMonster(int v);
 	int getHp();
 	int getAtk();
 	int getDef();
 	int getDoge();
 	bool getIsRanged();
+	bool getIsMonster();
 
 	void dealDmg(int dmg);
 
@@ -30,6 +32,7 @@ private:
 	int def;
 	int doge; //doge value is between 0 and 100
 	bool isRanged;
+	bool isMonster;
 };
 
 

@@ -2,7 +2,8 @@
 #define LISTS_HEADERS
 class Lists {
 public:
-	static Unit enemyList[2];
-	static Item itemList[2];
+	Lists();
+	Unit enemyList[2];
+	Item itemList[2];
 };
 #endif // !LISTS_HEADERS

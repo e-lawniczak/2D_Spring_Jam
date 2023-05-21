@@ -28,8 +28,7 @@ void GridTile::setType(TileType type)
 
 void GridTile::triggerEvent(TileType eventType)
 {
-
-	std::cout << "Event of type:" << eventType << "\n";
+	visited = true;
 
 	switch (eventType)
 	{

@@ -4,5 +4,4 @@
 int initSDL();
 void close();
 
-
 #endif 
