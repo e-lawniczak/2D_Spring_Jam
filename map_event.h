@@ -28,6 +28,7 @@ private:
 	Item item;
 	std::vector<Unit> enemies;
 	Unit boss;
+	int windowWeight;
 };
 
 #endif 

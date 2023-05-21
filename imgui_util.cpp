@@ -32,6 +32,13 @@ int imguiInit() {
 	// Setup Platform/Renderer backends
 	ImGui_ImplSDL2_InitForSDLRenderer(app.window, app.renderer);
 	ImGui_ImplSDLRenderer_Init(app.renderer);
+
+	ImGuiStyle& style = ImGui::GetStyle();
+
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.4f, 0.7f, 0.42f, 0.3f);
+	style.Colors[ImGuiCol_Button] = ImVec4(0.27f, 0.75, 0.33f, 0.95f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.09f, 0.5f, 0.22f, 0.95f);
+	style.WindowRounding = 0.25;
 }
 void imguiFrame() {
 	// Start the Dear ImGui frame
