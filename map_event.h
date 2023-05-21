@@ -14,8 +14,7 @@ public:
 	void setItem(Item v);
 	void addEnemy(Unit v);
 	void setBoss(Unit v);
-	Item getItem();
-	Item* getItemPtr();
+	Item* getItem();
 	std::vector<Unit> getEnemy();
 	Unit getBoss();
 	bool getEventFired();

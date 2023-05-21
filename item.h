@@ -13,14 +13,12 @@ public:
 	void setDef(int v);
 	void setDoge(int v);
 	void setType(ItemType v);
-	void setUsed(bool v);
 	std::string getName();
 	int getHp();
 	int getAtk();
 	int getDef();
 	int getDoge();
 	int getType();
-	bool getUsed();
 
 
 private:
@@ -30,7 +28,6 @@ private:
 	int defMod;
 	int dogeMod; //doge value is between 0 and 100
 	ItemType type;
-	bool used;
 };
 
 

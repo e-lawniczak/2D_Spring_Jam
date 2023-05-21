@@ -123,11 +123,7 @@ void MapEvent::setBoss(Unit v)
 	boss = v;
 }
 
-Item MapEvent::getItem()
-{
-	return item;
-}
-Item* MapEvent::getItemPtr()
+Item* MapEvent::getItem()
 {
 	return &item;
 }
