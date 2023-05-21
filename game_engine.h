@@ -21,6 +21,9 @@ private:
 	Unit player;
 	int timer;
 	bool gameFinished;
+	std::vector<Unit> currentEnemies;
+	Unit currentBoss;
+	bool encounterStarted;
 
 	
 };

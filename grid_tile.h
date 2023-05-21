@@ -10,7 +10,7 @@ public:
 	void free();
 	void setPos(Point p);
 	void setType(TileType type);
-	void triggerEvent(TileType eventType);
+	void triggerEvent(TileType eventType, bool& eventPtr);
 	TileType getType();
 	Point getPos();
 	bool getVisited();

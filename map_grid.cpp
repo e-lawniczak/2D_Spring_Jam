@@ -1,7 +1,6 @@
 #include "common.h"
 
 
-
 MapGrid::MapGrid()
 {
 	int start_w = 450, start_h = 310;
@@ -28,7 +27,7 @@ MapGrid::MapGrid()
 				vGrid[i][j].setType(BOSS);
 				vGrid[i][j].getEvent()->addEnemy(lists.enemyList[0]);
 				vGrid[i][j].getEvent()->addEnemy(lists.enemyList[0]);
-				vGrid[i][j].getEvent()->setBoss(lists.enemyList[1]);
+				vGrid[i][j].getEvent()->setBoss(Unit(lists.enemyList[1]));
 
 			}
 		}

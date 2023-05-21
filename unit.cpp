@@ -42,9 +42,13 @@ bool Unit::getIsRanged() { return isRanged; }
 bool Unit::getIsMonster() { return isMonster; }
 
 void Unit::dealDmg(int dmg) {
+	std::cout << "Dealing dmg: " << hp << std::endl;
+
 	if (hp > 0) {
 		hp -= dmg;
 	}
+	std::cout << "Dmg dealt: " << hp << std::endl;
+
 	if (hp <= 0) {
 		std::cout << getName() << " is down" << std::endl;
 	}
@@ -53,7 +57,7 @@ void Unit::dealDmg(int dmg) {
 void Unit::basicAttackUnit(Unit* u)
 {
 	int dmgDone = std::max(atk - u->def, 0);
-	if (rand() % 101 > u->doge) {
+	if (rand() % 101 > u ->doge) {
 		u->dealDmg(dmgDone);
 	}
 

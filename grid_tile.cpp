@@ -26,9 +26,9 @@ void GridTile::setType(TileType type)
 	this->type = type;
 }
 
-void GridTile::triggerEvent(TileType eventType)
+void GridTile::triggerEvent(TileType eventType, bool &eventPtr)
 {
-	visited = true;
+	//visited = true;
 
 	switch (eventType)
 	{
@@ -36,13 +36,13 @@ void GridTile::triggerEvent(TileType eventType)
 		mEvent.itemEvent();
 		break;
 	case ENCOUNTER:
-		mEvent.encounterEvent();
+		mEvent.encounterEvent(eventPtr);
 		break;
 	case CURIO:
 		mEvent.curioEvent();
 		break;
 	case BOSS:
-		mEvent.bossEvent();
+		mEvent.bossEvent(eventPtr);
 		break;
 	default:
 		break;
