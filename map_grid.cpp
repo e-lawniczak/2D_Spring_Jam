@@ -6,6 +6,8 @@ MapGrid::MapGrid()
 	int start_w = 450, start_h = 310;
 	currentX = 0;
 	currentY = 0;
+	prevX = 0;
+	prevY = 0;
 	Lists lists;
 
 	std::vector<std::vector<GridTile>> vGrid(GRID_WIDTH, std::vector<GridTile>(GRID_HEIGHT, GridTile()));
@@ -54,13 +56,16 @@ std::vector<std::vector<GridTile>> MapGrid::getGrid()
 
 void MapGrid::setCurrentX(int v)
 {
+	prevX = currentX;
 	currentX = v;
 }
 
 void MapGrid::setCurrentY(int v)
 {
+	prevY = currentY;
 	currentY = v;
 }
+
 
 int MapGrid::getCurrentX()
 {
@@ -80,4 +85,13 @@ GridTile MapGrid::getCurrentTile()
 GridTile* MapGrid::getCurrentTilePtr()
 {
 	return &grid[currentX][currentY];
+}
+GridTile MapGrid::getPrevTile()
+{
+	return grid[prevX][prevY];
+}
+
+GridTile* MapGrid::getPrevTilePtr()
+{
+	return &grid[prevX][prevY];
 }

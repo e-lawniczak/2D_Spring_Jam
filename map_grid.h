@@ -18,10 +18,14 @@ public:
 	int getCurrentY();
 	GridTile getCurrentTile();
 	GridTile* getCurrentTilePtr();
+	GridTile getPrevTile();
+	GridTile* getPrevTilePtr();
 private:
 	std::vector<std::vector<GridTile>> grid;
 	int currentX;
 	int currentY;
+	int prevX;
+	int prevY;
 };
 
 

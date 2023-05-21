@@ -107,21 +107,19 @@ void Unit::strongAttackUnit(Unit* u)
 	int accMod = -40;
 	int dmgDone = std::max(atk + mod + atkBonus - (u->def + u->defBonus), 0);
 	int dogeCheck = std::max((rand() % 101) + accMod, 0);
-	if (dogeCheck > u->doge) {
-		if (dogeCheck > (u->doge + u->dogeBonus)) {
-			u->dealDmg(dmgDone);
-		}
+	if (dogeCheck > (u->doge + u->dogeBonus)) {
+		u->dealDmg(dmgDone);
+	}
 
-		if (!isRanged) {
-			dmgDone = std::max(u->atk / 2 - def, 0);
-			dmgDone = std::max(u->atk + u->atkBonus / 2 - (def + defBonus), 0);
-			dealDmg(dmgDone);
-		}
+	if (!isRanged) {
+		dmgDone = std::max(u->atk / 2 - def, 0);
+		dmgDone = std::max(u->atk + u->atkBonus / 2 - (def + defBonus), 0);
+		dealDmg(dmgDone);
+	}
 
-		if (isRanged && u->isRanged) {
-			dmgDone = std::max(u->atk / 2 - def, 0);
-			dmgDone = std::max(u->atk + u->atkBonus / 2 - (def + defBonus), 0);
-			dealDmg(dmgDone);
-		}
+	if (isRanged && u->isRanged) {
+		dmgDone = std::max(u->atk / 2 - def, 0);
+		dmgDone = std::max(u->atk + u->atkBonus / 2 - (def + defBonus), 0);
+		dealDmg(dmgDone);
 	}
 }
