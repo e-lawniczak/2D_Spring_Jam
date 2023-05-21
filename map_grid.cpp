@@ -21,7 +21,7 @@ MapGrid::MapGrid()
 			}
 			if (i == 2) {
 				vGrid[i][j].setType(ITEM);
-				vGrid[i][j].getEvent()->setItem(lists.itemList[1]);
+				vGrid[i][j].getEvent()->setItem(lists.itemList[0]);
 			}
 			if (i == 3) {
 				vGrid[i][j].setType(BOSS);
