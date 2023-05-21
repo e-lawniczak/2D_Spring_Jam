@@ -6,8 +6,8 @@ public:
 	MapEvent();
 	~MapEvent();
 	void free();
-	void encounterEvent();
-	void bossEvent();
+	void encounterEvent(bool &eventPtr);
+	void bossEvent(bool& eventPtr);
 	void curioEvent();
 	void itemEvent();
 	void setEventFired(bool v);
@@ -15,8 +15,8 @@ public:
 	void addEnemy(Unit v);
 	void setBoss(Unit v);
 	Item* getItem();
-	std::vector<Unit>* getEnemy();
-	Unit* getBoss();
+	std::vector<Unit> getEnemy();
+	Unit getBoss();
 	bool getEventFired();
 	
 private:

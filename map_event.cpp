@@ -22,17 +22,18 @@ void MapEvent::free()
 {
 }
 
-void MapEvent::encounterEvent()
+void MapEvent::encounterEvent(bool &eventPtr)
 {
+
 	if (Mix_Playing(CH_MUSIC))
 		stopChannel(CH_MUSIC);
 
 	if (!Mix_Playing(CH_BATTLE))
 		playChannel(SND_BATTLE, CH_BATTLE, 1);
 
-	if (enemies.empty()) {
-		
-		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 2 - (windowWeight/2), 20));
+
+	if (!eventPtr) {
+		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 2 - (windowWeight / 2), 20));
 		ImGui::SetNextWindowSize(ImVec2(windowWeight, 80));
 		ImGui::Begin("Encounter event", &encounterEventPtr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
 		ImGui::Text("You defeated the foe!");
@@ -50,14 +51,15 @@ void MapEvent::encounterEvent()
 	}
 }
 
-void MapEvent::bossEvent()
+void MapEvent::bossEvent(bool& eventPtr)
 {
 	if (Mix_Playing(CH_MUSIC))
 		stopChannel(CH_MUSIC);
 
 	if (!Mix_Playing(CH_BATTLE))
 		playChannel(SND_BATTLE, CH_BATTLE, 1);
-	if (enemies.empty() && boss.getHp() <= 0) {
+
+	if (!eventPtr) {
 		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 2 - (windowWeight / 2), 20));
 		ImGui::SetNextWindowSize(ImVec2(windowWeight, 80));
 		ImGui::Begin("Encounter event", &bossEventPtr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
@@ -126,17 +128,14 @@ Item* MapEvent::getItem()
 	return &item;
 }
 
-std::vector<Unit>* MapEvent::getEnemy()
+std::vector<Unit> MapEvent::getEnemy()
 {
-	return &enemies;
+	return enemies;
 }
 
-Unit* MapEvent::getBoss()
+Unit MapEvent::getBoss()
 {
-	if (boss.getName().length() <= 0 || boss.getHp() <= 0) {
-		return nullptr;
-	}
-	return &boss;
+	return boss;
 }
 
 bool MapEvent::getEventFired()

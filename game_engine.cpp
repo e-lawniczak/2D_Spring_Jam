@@ -3,9 +3,13 @@
 GameEngine::GameEngine()
 {
 	grid = MapGrid();
-	Point pt= grid.getCurrentTile().getPos();
+	Point pt = grid.getCurrentTile().getPos();
 	player = Unit();
 	gameFinished = false;
+	currentEnemies = std::vector<Unit>();
+	currentBoss = Unit();
+	encounterStarted = false;
+
 }
 
 GameEngine::~GameEngine()
@@ -32,9 +36,13 @@ void GameEngine::gameLoop()
 	handleOverlandMovement();
 
 
+
 	GridTile* tile = grid.getCurrentTilePtr();
+	//std::cout << encounterStarted << currentEnemies.empty() << tile->getEvent()->getEventFired() << std::endl;
 	if (tile->getType() != EMPTY && !tile->getEvent()->getEventFired()) {
-		tile->triggerEvent(tile->getType());
+		if (!encounterStarted && !currentEnemies.empty())
+			encounterStarted = true;
+		tile->triggerEvent(tile->getType(), encounterStarted);
 	}
 	else if (tile->getEvent()->getEventFired()) {
 		player.setMoved(false);
@@ -44,7 +52,11 @@ void GameEngine::gameLoop()
 	}
 
 	if (tile->getType() == ENCOUNTER || tile->getType() == BOSS) {
+		//encounterStarted = true;
 		handleEncounter(tile);
+		if (!tile->getVisited())
+			tile->setVisited(true);
+
 	}
 
 	if (tile->getType() == BOSS && tile->getEvent()->getEventFired()) {
@@ -53,6 +65,61 @@ void GameEngine::gameLoop()
 
 	player.render();
 
+}
+
+void GameEngine::handleEncounter(GridTile* tile)
+{
+	gBackgroundTexture.loadFromFile("img/encounter_bg.png");
+	gBackgroundTexture.render(0, 0);
+	if (currentEnemies.empty() && !tile->getVisited()) {
+		currentEnemies = tile->getEvent()->getEnemy();
+	}
+	if (currentBoss.getHp() <= 0 && !tile->getVisited()) {
+		currentBoss = tile->getEvent()->getBoss();
+	}
+	int n = currentEnemies.size();
+	if (n > 0) {
+		for (int i = 0; i < n; i++) {
+			Unit* u = &currentEnemies.at(i);
+			u->move(Point(((SCREEN_WIDTH / 3) * 2), 400 + (i * 100)));
+			std::string x = u->getName();
+			for (int k = 0; k < strlen(x.c_str()); k++)
+				tolower(x[k]);
+			std::replace(x.begin(), x.end(), ' ', '_');
+			u->setTexture("img/" + (x)+".png");
+			u->render();
+		}
+	}
+	if (currentBoss.getHp() > 0) {
+		std::string x = currentBoss.getName();
+		for (int k = 0; k < strlen(x.c_str()); k++)
+			tolower(x[k]);
+		std::replace(x.begin(), x.end(), ' ', '_');
+		currentBoss.setTexture("img/" + (x)+".png");
+		currentBoss.move(Point(((SCREEN_WIDTH / 3) * 2) + 200, 400));
+		currentBoss.render();
+	}
+	player.move(Point((SCREEN_WIDTH / 3), SCREEN_HEIGHT / 2));
+
+	if (app.keyboard[SDL_SCANCODE_H] && !currentEnemies.empty()) {
+		std::cout << currentEnemies.size() << std::endl;
+		currentEnemies.pop_back();
+	}
+	else if (app.keyboard[SDL_SCANCODE_G] && currentBoss.getHp() > 0) {
+		std::cout << currentBoss.getName() << std::endl;
+		player.basicAttackUnit(&currentBoss);
+	}
+
+	if (encounterStarted && currentEnemies.empty() && currentBoss.getHp() <= 0) {
+		encounterStarted = false;
+		//tile->getEvent()->setEventFired(true);
+	}
+
+	if (tile->getEvent()->getEventFired()) {
+		gBackgroundTexture.loadFromFile("img/overland_map.png");
+		gBackgroundTexture.render(0, 0);
+		player.move(grid.getCurrentTilePtr()->getPos());
+	}
 }
 
 void GameEngine::handleOverlandMovement()
@@ -100,7 +167,6 @@ void GameEngine::handleOverlandMovement()
 		}
 	}
 	if (player.getMoved()) {
-		grid.getCurrentTilePtr()->setVisited(true);
 		grid.setCurrentX(moveX);
 		grid.setCurrentY(moveY);
 	}
@@ -111,48 +177,3 @@ bool GameEngine::getGameFinished()
 	return gameFinished;
 }
 
-void GameEngine::handleEncounter(GridTile* tile)
-{
-	gBackgroundTexture.loadFromFile("img/encounter_bg.png");
-	gBackgroundTexture.render(0, 0);
-	std::vector<Unit>* enemies = tile->getEvent()->getEnemy();
-	Unit* boss = tile->getEvent()->getBoss();
-	int n = enemies->size();
-	if (n > 0) {
-		for (int i = 0; i < n; i++) {
-			Unit* u = &enemies->at(i);
-			u->move(Point(((SCREEN_WIDTH / 3) * 2), 400 + (i * 100)));
-			std::string x = u->getName();
-			for (int k = 0; k < strlen(x.c_str()); k++)
-				tolower(x[k]);
-			std::replace(x.begin(), x.end(), ' ', '_');
-			u->setTexture("img/" + (x)+".png");
-			u->render();
-		}
-	}
-	if (boss != nullptr) {
-		std::string x = boss->getName();
-		for (int k = 0; k < strlen(x.c_str()); k++)
-			tolower(x[k]);
-		std::replace(x.begin(), x.end(), ' ', '_');
-		boss->setTexture("img/" + (x)+".png");
-		boss->move(Point(((SCREEN_WIDTH / 3) * 2) + 200, 400));
-		boss->render();
-	}
-	player.move(Point((SCREEN_WIDTH / 3), SCREEN_HEIGHT / 2));
-
-	if (app.keyboard[SDL_SCANCODE_H] && !enemies->empty()) {
-		enemies->pop_back();
-	}
-	else if (app.keyboard[SDL_SCANCODE_G] && boss != nullptr) {
-		boss = nullptr;
-		tile->getEvent()->setBoss(Unit());
-
-	}
-
-	if (tile->getEvent()->getEventFired()) {
-		gBackgroundTexture.loadFromFile("img/overland_map.png");
-		gBackgroundTexture.render(0, 0);
-		player.move(grid.getCurrentTilePtr()->getPos());
-	}
-}
