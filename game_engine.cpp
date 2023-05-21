@@ -35,7 +35,7 @@ void GameEngine::gameLoop()
 {
 	player.move(grid.getCurrentTile().getPos());
 	handleOverlandMovement();
-
+	displayPlayerStats();
 
 
 	GridTile* tile = grid.getCurrentTilePtr();
@@ -61,7 +61,7 @@ void GameEngine::gameLoop()
 
 	}
 
-	if (tile->getType() == ITEM) {
+	if (tile->getType() == ITEM && !tile->getEvent()->getEventFired()) {
 		Item i = tile->getEvent()->getItem();
 		if (!tile->getEvent()->getItem().getUsed()) {
 			player.addEq(tile->getEvent()->getItem());
