@@ -69,6 +69,11 @@ void GameEngine::gameLoop()
 			gBackgroundTexture.loadFromFile("img/overland_map.png");
 			gBackgroundTexture.render(0, 0);
 			tile->triggerEvent(tile->getType(), encounterStarted);
+			if (Mix_Playing(CH_BATTLE))
+				stopChannel(CH_BATTLE);
+
+			if (!Mix_Playing(CH_MUSIC))
+				playChannel(SND_MAIN_THEME, CH_MUSIC, 1);
 		}
 		ImGui::SetNextWindowPos(ImVec2(SCREEN_WIDTH / 2 - 125, SCREEN_HEIGHT / 3 ));
 		ImGui::SetNextWindowSize(ImVec2(250, 200));
@@ -77,6 +82,7 @@ void GameEngine::gameLoop()
 		ImGui::Text("But you can't stop here!");
 		if (ImGui::Button("Rest and continue!")) {
 			player.setHp(player.getMaxHp());
+			playSound(SND_CONFIRM, CH_PLAYER);
 			playerDead = false;
 			deadPtr = false;
 		}
@@ -127,6 +133,19 @@ void GameEngine::gameLoop()
 			gameFinished = true;
 		}
 	}
+	if (frameCount % spriteDuration == 0) {
+		if (playerAnimationState) {
+			player.setTexture("img/player/player01.png");
+			playerAnimationState = false;
+		}
+		else
+		{
+			player.setTexture("img/player/player02.png");
+			playerAnimationState = true;
+		}
+	}
+	resetFrameCounterEvery(spriteDuration * 2);
+	frameCount += 1;
 	player.render();
 
 }
@@ -191,19 +210,7 @@ void GameEngine::handleEncounter(GridTile* tile)
 		player.move(grid.getCurrentTilePtr()->getPos());
 	}
 
-	if (frameCount % spriteDuration == 0) {
-		if (playerAnimationState) {
-			player.setTexture("img/player/player01.png");
-			playerAnimationState = false;
-		}
-		else
-		{
-			player.setTexture("img/player/player02.png");
-			playerAnimationState = true;
-		}
-	}
-	resetFrameCounterEvery(spriteDuration * 2);
-	frameCount += 1;
+	
 }
 
 void GameEngine::displayPlayerStats()
