@@ -36,6 +36,7 @@ void GameEngine::init()
 	player.setAtk(10);
 	player.setMaxHp(10);
 	frameCount = 0;
+	player.move(grid.getCurrentTile().getPos());
 
 }
 
@@ -47,7 +48,7 @@ void GameEngine::resetFrameCounterEvery(int floor) {
 
 void GameEngine::gameLoop()
 {
-	player.move(grid.getCurrentTile().getPos());
+	//player.move(grid.getCurrentTile().getPos());
 	handleOverlandMovement();
 	displayPlayerStats();
 
@@ -105,7 +106,7 @@ void GameEngine::gameLoop()
 			player.setMoved(false);
 		}
 
-		if (tile->getType() == ENCOUNTER || tile->getType() == BOSS) {
+		if ((tile->getType() == ENCOUNTER || tile->getType() == BOSS) && !tile->getEvent()->getEventFired()) {
 			//encounterStarted = true;
 			if (!encounterStarted && !currentEnemies.empty())
 				encounterStarted = true;
@@ -113,6 +114,10 @@ void GameEngine::gameLoop()
 			if (!tile->getVisited())
 				tile->setVisited(true);
 
+		}else if (tile->getEvent()->getEventFired()) {
+			gBackgroundTexture.loadFromFile("img/overland_map.png");
+			gBackgroundTexture.render(0, 0);
+			player.move(grid.getCurrentTilePtr()->getPos());
 		}
 
 		if (tile->getType() == ITEM && !tile->getEvent()->getEventFired()) {
@@ -204,11 +209,7 @@ void GameEngine::handleEncounter(GridTile* tile)
 		//tile->getEvent()->setEventFired(true);
 	}
 
-	if (tile->getEvent()->getEventFired()) {
-		gBackgroundTexture.loadFromFile("img/overland_map.png");
-		gBackgroundTexture.render(0, 0);
-		player.move(grid.getCurrentTilePtr()->getPos());
-	}
+	
 
 	
 }
