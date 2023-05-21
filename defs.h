@@ -61,6 +61,7 @@ enum
 	SND_CONFIRM,
 	SND_BATTLE,
 	SND_HIT,
+	SND_DOGE,
 	SND_MAX
 };
 
