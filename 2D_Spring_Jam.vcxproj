@@ -195,6 +195,7 @@
     <Image Include="img\player.png" />
   </ItemGroup>
   <ItemGroup>
+    <Font Include="..\..\..\dogica.ttf" />
     <Font Include="font\arial.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

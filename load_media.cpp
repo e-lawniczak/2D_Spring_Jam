@@ -37,7 +37,7 @@ bool loadMusic() {
 bool loadFont() {
     bool success = true;
 
-    gFont = TTF_OpenFont("font/arial.ttf", 28);
+    gFont = TTF_OpenFont("font/dogica.ttf", 28);
     if (gFont == NULL)
     {
         printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
