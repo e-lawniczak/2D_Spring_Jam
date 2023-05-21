@@ -14,7 +14,10 @@ Lists::Lists()
 	};*/
 
 	itemList[0] = Item("Leather armor", 5, 0, 4, 20, BODY);
-	itemList[1] = Item("Sword", 0, 15, 1, 0, WEAPON);
+	itemList[1] = Item("Helmet", 5, 0, 5, 0, HEAD);
+	itemList[2] = Item("Battle Axe", 0, 25, 1, -10, WEAPON);
+	itemList[3] = Item("Monk wristbands", 0, 0, 1, 25, ARMS);
+	itemList[4] = Item("Supreme Shield", 100, 2, 50, -100, WEAPON);
 	/*itemList[2] = {
 		Item("Leather armor", 5, 0, 4, 20, BODY),
 		Item("Sword", 0, 15, 1, 0, WEAPON)
