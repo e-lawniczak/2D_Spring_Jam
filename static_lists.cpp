@@ -4,8 +4,8 @@
 
 Lists::Lists()
 {
-	enemyList[0] = Unit(0, 0, "img/snake.png", "Snake", 4, 2, 0, 50, 0);
-	enemyList[1] = Unit(0, 0, "img/sly_fox.png.png", "Sly fox", 5, 10, 10, 5, 1);
+	enemyList[0] = Unit(0, 0, "img/snake.png", "Snake", 10, 4, 2, 50, 0);
+	enemyList[1] = Unit(0, 0, "img/sly_fox.png.png", "Sly fox", 50, 15, 20, 5, 0);
 	/*enemyList[0].getTexture()->loadFromFile("img/sly_fox.png");
 	enemyList[1].getTexture()->loadFromFile("img/blue_snowman.png");*/
 	/*{

@@ -32,9 +32,9 @@ void GameEngine::init()
 {
 	player.setTexture("img/player.png");
 	player.setIsMonster(0);
-	player.setHp(10);
+	player.setHp(50);
 	player.setAtk(10);
-	player.setMaxHp(10);
+	player.setMaxHp(50);
 	frameCount = 0;
 	player.move(grid.getCurrentTile().getPos());
 
