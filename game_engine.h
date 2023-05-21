@@ -16,7 +16,8 @@ public:
 
 	
 private:
-	void handleEncounter(GridTile *tile);
+	void handleEncounter(GridTile* tile);
+	void displayPlayerStats();
 	MapGrid grid;
 	Unit player;
 	int timer;
@@ -24,6 +25,7 @@ private:
 	std::vector<Unit> currentEnemies;
 	Unit currentBoss;
 	bool encounterStarted;
+	bool eqPtr;
 
 	
 };
