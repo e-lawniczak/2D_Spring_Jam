@@ -4,6 +4,9 @@
 #include "input.h"
 #include "app.h"
 #include "sound.h"
+#include "main.h"
+
+
 App app;
 
 LTexture gBackgroundTexture;
@@ -20,6 +23,11 @@ int main(int argc, char* argv[]) {
 	memset(&app, 0, sizeof(App));
 
 	initSDL();
+
+	SDL_Surface* iconPtr = IMG_Load("img/game_icon.ico");
+	SDL_SetWindowIcon(app.window, iconPtr);
+	SDL_FreeSurface(iconPtr);
+
 	loadImages();
 	loadMusic();
 	loadFont();
@@ -30,9 +38,9 @@ int main(int argc, char* argv[]) {
 	application.init();
 	while (1)
 	{
-		prepareScene(application.getScreen());
 		imguiFrame();
 		handleInput();
+		prepareScene(application.getScreen());
 
 		application.handleScreen();
 

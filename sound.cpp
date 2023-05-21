@@ -22,6 +22,7 @@ static void loadSounds(void)
 	sounds[SND_MAIN_THEME] = Mix_LoadWAV("sound/overworld.mp3");
 	sounds[SND_MENU_CLICK] = Mix_LoadWAV("sound/selection.mp3");
 	sounds[SND_BATTLE] = Mix_LoadWAV("sound/battle_theme.mp3");
+	sounds[SND_HIT] = Mix_LoadWAV("sound/hit_sound.mp3");
 }
 
 void loadMusic(std::string filename)

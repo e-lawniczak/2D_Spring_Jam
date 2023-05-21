@@ -28,7 +28,7 @@ int imguiInit() {
 	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();
 	//ImGui::StyleColorsLight();
-
+	ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0x00, 0x00, 0x00, 0xff));
 	// Setup Platform/Renderer backends
 	ImGui_ImplSDL2_InitForSDLRenderer(app.window, app.renderer);
 	ImGui_ImplSDLRenderer_Init(app.renderer);

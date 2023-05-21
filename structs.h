@@ -9,6 +9,7 @@ typedef struct
 	SDL_Window* window;
 	int keyboard[MAX_KEYBOARD_KEYS];
 	int mouse[2];
+	ImVec2 cursorPos;
 } App;
 
 #endif 

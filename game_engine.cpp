@@ -1,5 +1,6 @@
 #include "common.h"
 #include <algorithm>
+#include "sound.h"
 GameEngine::GameEngine()
 {
 	grid = MapGrid();
@@ -9,6 +10,7 @@ GameEngine::GameEngine()
 	currentEnemies = std::vector<Unit>();
 	currentBoss = Unit();
 	encounterStarted = false;
+	eqPtr = true;
 	frameCount = 0;
 	playerAnimationState = true;
 	spriteDuration = 30;
@@ -29,6 +31,7 @@ void GameEngine::init()
 	player.setIsMonster(0);
 	player.setHp(10);
 	player.setAtk(10);
+	player.setMaxHp(10);
 	frameCount = 0;
 
 }
@@ -43,14 +46,13 @@ void GameEngine::gameLoop()
 {
 	player.move(grid.getCurrentTile().getPos());
 	handleOverlandMovement();
-
+	displayPlayerStats();
 
 
 	GridTile* tile = grid.getCurrentTilePtr();
 	//std::cout << encounterStarted << currentEnemies.empty() << tile->getEvent()->getEventFired() << std::endl;
 	if (tile->getType() != EMPTY && !tile->getEvent()->getEventFired()) {
-		if (!encounterStarted && !currentEnemies.empty())
-			encounterStarted = true;
+	
 		tile->triggerEvent(tile->getType(), encounterStarted);
 	}
 	else if (tile->getEvent()->getEventFired()) {
@@ -62,9 +64,25 @@ void GameEngine::gameLoop()
 
 	if (tile->getType() == ENCOUNTER || tile->getType() == BOSS) {
 		//encounterStarted = true;
+		if (!encounterStarted && !currentEnemies.empty())
+			encounterStarted = true;
 		handleEncounter(tile);
 		if (!tile->getVisited())
 			tile->setVisited(true);
+
+	}
+
+	if (tile->getType() == ITEM && !tile->getEvent()->getEventFired()) {
+		Item i = tile->getEvent()->getItem();
+		if (!tile->getEvent()->getItem().getUsed()) {
+			player.addEq(tile->getEvent()->getItem());
+			player.setMaxHp(player.getMaxHp() + i.getHp());
+			player.setHp(player.getHp() + i.getHp());
+			player.setAtkBonus(player.getAtkBonus() + i.getAtk());
+			player.setDefBonus(player.getDefBonus() + i.getDef());
+			player.setDogeBonus(player.getDogeBonus() + i.getDoge());
+		}
+		tile->getEvent()->getItemPtr()->setUsed(true);
 
 	}
 
@@ -112,10 +130,12 @@ void GameEngine::handleEncounter(GridTile* tile)
 
 	if (app.keyboard[SDL_SCANCODE_H] && !currentEnemies.empty()) {
 		std::cout << currentEnemies.size() << std::endl;
+		playSound(SND_HIT, CH_PLAYER);
 		currentEnemies.pop_back();
 	}
 	else if (app.keyboard[SDL_SCANCODE_G] && currentBoss.getHp() > 0) {
 		std::cout << currentBoss.getName() << std::endl;
+		playSound(SND_HIT, CH_PLAYER);
 		player.basicAttackUnit(&currentBoss);
 	}
 
@@ -141,8 +161,39 @@ void GameEngine::handleEncounter(GridTile* tile)
 			playerAnimationState = true;
 		}
 	}
-	resetFrameCounterEvery(spriteDuration*2);
+	resetFrameCounterEvery(spriteDuration * 2);
 	frameCount += 1;
+}
+
+void GameEngine::displayPlayerStats()
+{
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
+	ImGui::SetNextWindowSize(ImVec2(250, SCREEN_HEIGHT));
+	ImGui::Begin("Chicken!", &eqPtr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
+	ImGui::Text("~~~~~~~~~~~~~~~~~~");
+	ImGui::Text("STATS");
+	ImGui::Text("Hp: %d/%d", player.getHp(), player.getMaxHp());
+	ImGui::Text("Atk: %d + %d", player.getAtk(), player.getAtkBonus());
+	ImGui::Text("Def: %d + %d", player.getDef(), player.getDefBonus());
+	ImGui::Text("Doge: %d + %d", player.getDoge(), player.getDogeBonus());
+	ImGui::Text("~~~~~~~~~~~~~~~~~~");
+	ImGui::Text("ITEMS");
+	for (Item i : player.getEq()) {
+		ImGui::Text("%s\n\tatk: %d, def: %d, \n\tmaxHp: %d, doge: %d", i.getName().c_str(), i.getAtk(), i.getDef(), i.getHp(), i.getDoge());
+	}
+	if (encounterStarted) {
+		ImGui::Text("~~~~~~~~~~~~~~~~~~");
+		ImGui::Text("ACTIONS");
+		if (ImGui::Button("Normal attack")) {
+
+		}
+		if (ImGui::Button("Strong attack")) {
+
+		}
+	}
+
+	ImGui::End();
+
 }
 
 void GameEngine::handleOverlandMovement()
